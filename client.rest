@@ -3,3 +3,17 @@
 ### TESTANDO O HELLO WORLD
 
 GET {{baseurl}}/
+
+### AUTORES
+
+### LISTANDO TODOS OS AUTORES
+
+GET {{baseurl}}/autores/todos/
+
+
+
+
+
+### LIVROS
+
+GET {{baseurl}}/livros/todos/
