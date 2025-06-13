@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AutoresModule } from 'src/autores/autores.module';
+import { LivrosModule } from 'src/livros/livros.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true, // Carrega entidades sem precisar especificá-las
       synchronize: true, // Sincroniza com o BD. Não deve ser usado em produção
     }),
+    AutoresModule,
+    LivrosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
