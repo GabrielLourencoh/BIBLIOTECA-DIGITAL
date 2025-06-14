@@ -1,24 +1,15 @@
-import {
-  Controller,
-  Get,
-  Param,
-  // Post,
-  // Body,
-  // Patch,
-  // Delete,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AutoresService } from './autores.service';
-// import { CreateAutorDto } from './dto/create-autor.dto';
-// import { UpdateAutorDto } from './dto/update-autor.dto';
+import { CreateAutorDto } from './dto/create-autor.dto';
 
 @Controller('autores')
 export class AutoresController {
   constructor(private readonly autoresService: AutoresService) {}
 
-  // @Post()
-  // create(@Body() createAutoreDto: CreateAutorDto) {
-  //   return this.autoresService.create(createAutorDto);
-  // }
+  @Post()
+  create(@Body() createAutorDto: CreateAutorDto) {
+    return this.autoresService.create(createAutorDto);
+  }
 
   @Get('/todos/')
   findAll() {

@@ -14,6 +14,18 @@ GET {{baseurl}}/autores/todos/
 
 GET {{baseurl}}/autores/3/
 
+### CRIANDO UM AUTOR NO BANCO DE DADOS
+
+POST {{baseurl}}/autores/
+Content-Type: application/json
+
+{
+    "nome": "Gabriel Lourenco",
+    "cpf": "",
+    "nacionalidade": "Brasileiro",
+    "idade": 22
+}
+
 
 
 

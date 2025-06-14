@@ -18,7 +18,11 @@ export class Autor {
   @IsString()
   nome: string;
 
-  @Column({ length: 50 })
+  @Column({ length: 11, unique: true, nullable: false })
+  @IsString({ message: 'O CPF deve ser uma sequência de caracteres.' })
+  cpf: string;
+
+  @Column({ length: 50, nullable: false })
   @IsString()
   nacionalidade: string;
 
