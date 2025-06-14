@@ -2,23 +2,22 @@ import {
   Controller,
   Get,
   Param,
-  // Post,
-  // Body,
+  Post,
+  Body,
   // Patch,
   // Delete,
 } from '@nestjs/common';
 import { LivrosService } from './livros.service';
-// import { CreateLivroDto } from './dto/create-livro.dto';
-// import { UpdateLivroDto } from './dto/update-livro.dto';
+import { CreateLivroDto } from './dto/create-livro.dto';
 
 @Controller('livros')
 export class LivrosController {
   constructor(private readonly livrosService: LivrosService) {}
 
-  // @Post()
-  // create(@Body() createLivroDto: CreateLivroDto) {
-  //   return this.livrosService.create(createLivroDto);
-  // }
+  @Post()
+  create(@Body() createLivroDto: CreateLivroDto) {
+    return this.livrosService.create(createLivroDto);
+  }
 
   @Get('/todos/')
   findAll() {

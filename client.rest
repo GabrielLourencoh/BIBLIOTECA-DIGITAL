@@ -21,9 +21,9 @@ Content-Type: application/json
 
 {
     "nome": "Gabriel Lourenco",
-    "cpf": "",
-    "nacionalidade": "Brasileiro",
-    "idade": 22
+    "cpf": "12312323329",
+    "nacionalidade": "Portugues",
+    "idade": 90
 }
 
 
@@ -39,3 +39,18 @@ GET {{baseurl}}/livros/todos/
 ### LISTANDO UM LIVRO ESPECIFICO
 
 GET {{baseurl}}/livros/2
+
+### CRIANDO UM LIVRO NO BANCO DE DADOS
+### CRIANDO UM AUTOR NO BANCO DE DADOS
+
+POST {{baseurl}}/livros/
+Content-Type: application/json
+
+{
+    "titulo": "Ronaldinho soccersss",
+    "isbn": "1111211111321",
+    "genero": "Futebolistico",
+    "anoPublicacao": 1,
+    "paginas": 100,
+    "autorId": 37
+}

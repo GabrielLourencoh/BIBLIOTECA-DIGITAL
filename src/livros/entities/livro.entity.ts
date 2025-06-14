@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { IsNumber, IsPositive, IsString } from 'class-validator';
 import { Autor } from 'src/autores/entities/autor.entity';
 import {

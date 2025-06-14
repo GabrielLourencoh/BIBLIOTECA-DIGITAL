@@ -3,9 +3,10 @@ import { LivrosService } from './livros.service';
 import { LivrosController } from './livros.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Livro } from './entities/livro.entity';
+import { Autor } from 'src/autores/entities/autor.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Livro])], // Registra a entidade Livro para este módulo
+  imports: [TypeOrmModule.forFeature([Livro, Autor])], // Registra a entidade Livro e Autor para este módulo
   controllers: [LivrosController],
   providers: [LivrosService],
 })

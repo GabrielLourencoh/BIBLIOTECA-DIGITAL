@@ -8,5 +8,6 @@ import { Autor } from './entities/autor.entity';
   imports: [TypeOrmModule.forFeature([Autor])], // Registra a entidade Autor para este módulo
   controllers: [AutoresController],
   providers: [AutoresService],
+  exports: [AutoresService],
 })
 export class AutoresModule {}
