@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Param,
   // Post,
   // Body,
   // Patch,
@@ -25,10 +26,10 @@ export class AutoresController {
     return this.autoresService.findAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.autoresService.findOne(+id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.autoresService.findOne(id);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateAutoreDto: UpdateAutoreDto) {

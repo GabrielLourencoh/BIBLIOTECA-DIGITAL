@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 // import { CreateAutorDto } from './dto/create-autor.dto';
 // import { UpdateAutorDto } from './dto/update-autor.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -25,9 +25,19 @@ export class AutoresService {
     return autores;
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} autore`;
-  // }
+  async findOne(id: number) {
+    const autor = await this.autorRepository.findOneBy({
+      id: id,
+    });
+
+    if (!autor) {
+      throw new NotFoundException(
+        `Autor de ID: ${id} não encontrado no sistema!`,
+      );
+    }
+
+    return autor;
+  }
 
   // update(id: number, updateAutoreDto: UpdateAutorDto) {
   //   return `This action updates a #${id} autore`;

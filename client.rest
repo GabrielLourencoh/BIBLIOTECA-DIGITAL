@@ -10,10 +10,16 @@ GET {{baseurl}}/
 
 GET {{baseurl}}/autores/todos/
 
+### LISTANDO UM AUTOR ESPECIFICO
+
+GET {{baseurl}}/autores/3/
+
 
 
 
 
 ### LIVROS
+
+### LISTANDO TODOS OS LIVROS
 
 GET {{baseurl}}/livros/todos/
