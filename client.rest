@@ -23,3 +23,7 @@ GET {{baseurl}}/autores/3/
 ### LISTANDO TODOS OS LIVROS
 
 GET {{baseurl}}/livros/todos/
+
+### LISTANDO UM LIVRO ESPECIFICO
+
+GET {{baseurl}}/livros/2

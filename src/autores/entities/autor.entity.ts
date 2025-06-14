@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { IsNumber, IsPositive, IsString, Min } from 'class-validator';
 import {
   Column,

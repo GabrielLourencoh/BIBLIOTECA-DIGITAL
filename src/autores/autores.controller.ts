@@ -5,7 +5,6 @@ import {
   // Post,
   // Body,
   // Patch,
-  // Param,
   // Delete,
 } from '@nestjs/common';
 import { AutoresService } from './autores.service';

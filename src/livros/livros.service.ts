@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 // import { CreateLivroDto } from './dto/create-livro.dto';
 // import { UpdateLivroDto } from './dto/update-livro.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,9 +26,17 @@ export class LivrosService {
     return livros;
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} livro`;
-  // }
+  async findOne(id: number) {
+    const livro = await this.livroRepository.findOneBy({
+      id: id,
+    });
+
+    if (!livro) {
+      throw new NotFoundException(`O livro de ID: ${id} não foi encontrado!`);
+    }
+
+    return livro;
+  }
 
   // update(id: number, updateLivroDto: UpdateLivroDto) {
   //   return `This action updates a #${id} livro`;

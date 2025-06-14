@@ -1,10 +1,10 @@
 import {
   Controller,
   Get,
+  Param,
   // Post,
   // Body,
   // Patch,
-  // Param,
   // Delete,
 } from '@nestjs/common';
 import { LivrosService } from './livros.service';
@@ -25,10 +25,10 @@ export class LivrosController {
     return this.livrosService.findAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.livrosService.findOne(+id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.livrosService.findOne(id);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateLivroDto: UpdateLivroDto) {
