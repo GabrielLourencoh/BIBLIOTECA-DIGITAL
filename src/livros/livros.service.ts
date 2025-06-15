@@ -66,8 +66,23 @@ export class LivrosService {
   }
 
   async findOne(id: number) {
-    const livro = await this.livroRepository.findOneBy({
-      id: id,
+    const livro = await this.livroRepository.findOne({
+      where: { id: id },
+      relations: ['autor'],
+      select: {
+        // Seleciona os campos da entidade Livro
+        id: true,
+        titulo: true,
+        isbn: true,
+        genero: true,
+        anoPublicacao: true,
+        paginas: true,
+        // Específica os campos da entidade 'autor' dentro da relação
+        autor: {
+          id: true,
+          nome: true,
+        },
+      },
     });
 
     if (!livro) {

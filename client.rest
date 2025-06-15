@@ -51,7 +51,6 @@ GET {{baseurl}}/livros/todos/
 GET {{baseurl}}/livros/1
 
 ### CRIANDO UM LIVRO NO BANCO DE DADOS
-### CRIANDO UM AUTOR NO BANCO DE DADOS
 
 POST {{baseurl}}/livros/
 Content-Type: application/json
