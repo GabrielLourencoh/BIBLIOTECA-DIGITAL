@@ -1,10 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository } from 'typeorm';
 import { Livro } from './entities/livro.entity';
 import { CreateLivroDto } from './dto/create-livro.dto';
 import { Autor } from '../autores/entities/autor.entity';
+import { UpdateLivroDto } from './dto/update-livro.dto';
 
 @Injectable()
 export class LivrosService {
@@ -92,9 +98,32 @@ export class LivrosService {
     return livro;
   }
 
-  // update(id: number, updateLivroDto: UpdateLivroDto) {
-  //   return `This action updates a #${id} livro`;
-  // }
+  async update(id: number, updateLivroDto: UpdateLivroDto) {
+    const livro = await this.livroRepository.findOneBy({ id: id });
+
+    if (!livro) {
+      throw new NotFoundException(`Livro de ID ${id} não encontrado`);
+    }
+
+    const livroAtualizado = this.livroRepository.merge(livro, updateLivroDto);
+
+    try {
+      await this.livroRepository.save(livroAtualizado);
+      return livroAtualizado;
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if ((error as any).code === '23505') {
+          throw new ConflictException(
+            'Já existe um livro com o ISBN fornecido. O ISBN deve ser único.',
+          );
+        }
+      }
+      throw new InternalServerErrorException(
+        'Ocorreu um erro interno ao tentar atualizar o autor.',
+      );
+    }
+  }
 
   // remove(id: number) {
   //   return `This action removes a #${id} livro`;

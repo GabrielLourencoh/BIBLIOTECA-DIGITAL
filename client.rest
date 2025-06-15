@@ -63,3 +63,17 @@ Content-Type: application/json
     "paginas": 100,
     "autorId": 37
 }
+
+### ATUALIZANDO UM LIVRO NO BANCO DE DADOS
+
+PATCH {{baseurl}}/livros/1
+Content-Type: application/json
+
+{
+    "titulo": "Ronaldinho ss",
+    "isbn": "11111111110",
+    "genero": "Futebolistico",
+    "anoPublicacao": 1,
+    "paginas": 100,
+    "autorId": 36
+}

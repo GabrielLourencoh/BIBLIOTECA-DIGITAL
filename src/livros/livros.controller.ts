@@ -4,11 +4,12 @@ import {
   Param,
   Post,
   Body,
-  // Patch,
+  Patch,
   // Delete,
 } from '@nestjs/common';
 import { LivrosService } from './livros.service';
 import { CreateLivroDto } from './dto/create-livro.dto';
+import { UpdateLivroDto } from './dto/update-livro.dto';
 
 @Controller('livros')
 export class LivrosController {
@@ -29,10 +30,10 @@ export class LivrosController {
     return this.livrosService.findOne(id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateLivroDto: UpdateLivroDto) {
-  //   return this.livrosService.update(+id, updateLivroDto);
-  // }
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateLivroDto: UpdateLivroDto) {
+    return this.livrosService.update(+id, updateLivroDto);
+  }
 
   // @Delete(':id')
   // remove(@Param('id') id: string) {
