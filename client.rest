@@ -61,11 +61,11 @@ Content-Type: application/json
 
 {
     "titulo": "Ronaldinho soccersss",
-    "isbn": "1111211111321",
+    "isbn": "1111211111921",
     "genero": "Futebolistico",
-    "anoPublicacao": 1,
+    "anoPublicacao": 41,
     "paginas": 100,
-    "autorId": 37
+    "autorId": 36
 }
 
 ### ATUALIZANDO UM LIVRO NO BANCO DE DADOS

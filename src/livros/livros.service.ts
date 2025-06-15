@@ -36,14 +36,39 @@ export class LivrosService {
       genero: createLivroDto.genero,
       anoPublicacao: createLivroDto.anoPublicacao,
       paginas: createLivroDto.paginas,
-      autorId,
+      autor: autor,
     };
-    const livro = this.livroRepository.create(cadastroLivro);
-    await this.livroRepository.save(livro);
 
-    return {
-      ...livro,
-    };
+    try {
+      const livro = this.livroRepository.create(cadastroLivro);
+      await this.livroRepository.save(livro);
+      return {
+        id: livro.id,
+        titulo: livro.titulo,
+        isbn: livro.isbn,
+        genero: livro.genero,
+        anoPublicacao: livro.anoPublicacao,
+        paginas: livro.paginas,
+        createdAt: livro.createdAt,
+        updatedAt: livro.updatedAt,
+        autor: {
+          id: autor.id, // Usamos o ID do objeto autor que já buscamos
+          nome: autor.nome, // Usamos o nome do objeto autor que já buscamos
+        },
+      } as Livro; // Cast para Livro, para manter a tipagem de retorno.
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if ((error as any).code === '23505') {
+          throw new ConflictException(
+            'Já existe um livro com o ISBN fornecido. O ISBN deve ser único.',
+          );
+        }
+      }
+      throw new InternalServerErrorException(
+        'Ocorreu um erro interno ao tentar criar o livro.',
+      );
+    }
   }
 
   async findAll() {
