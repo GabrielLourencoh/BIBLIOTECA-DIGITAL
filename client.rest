@@ -82,3 +82,6 @@ Content-Type: application/json
     "autorId": 36
 }
 
+### DELETANDO UM LIVRO NO BANCO DE DADOS
+
+DELETE {{baseurl}}/livros/1

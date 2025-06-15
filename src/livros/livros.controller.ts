@@ -5,7 +5,7 @@ import {
   Post,
   Body,
   Patch,
-  // Delete,
+  Delete,
 } from '@nestjs/common';
 import { LivrosService } from './livros.service';
 import { CreateLivroDto } from './dto/create-livro.dto';
@@ -35,8 +35,8 @@ export class LivrosController {
     return this.livrosService.update(+id, updateLivroDto);
   }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.livrosService.remove(+id);
-  // }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.livrosService.remove(+id);
+  }
 }

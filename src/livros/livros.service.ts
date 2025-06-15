@@ -125,7 +125,21 @@ export class LivrosService {
     }
   }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} livro`;
-  // }
+  async remove(id: number) {
+    const livro = await this.livroRepository.findOneBy({ id: id });
+
+    if (!livro) {
+      throw new NotFoundException(`Livro de ID ${id} não encontrado`);
+    }
+
+    try {
+      await this.livroRepository.remove(livro);
+      return livro;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Ocorreu um erro interno ao tentar remover o autor.',
+      );
+    }
+  }
 }
