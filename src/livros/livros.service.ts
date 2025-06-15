@@ -120,7 +120,7 @@ export class LivrosService {
         }
       }
       throw new InternalServerErrorException(
-        'Ocorreu um erro interno ao tentar atualizar o autor.',
+        'Ocorreu um erro interno ao tentar atualizar o livro.',
       );
     }
   }
@@ -138,7 +138,7 @@ export class LivrosService {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       throw new InternalServerErrorException(
-        'Ocorreu um erro interno ao tentar remover o autor.',
+        'Ocorreu um erro interno ao tentar remover o livro.',
       );
     }
   }
