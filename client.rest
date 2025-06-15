@@ -26,7 +26,17 @@ Content-Type: application/json
     "idade": 90
 }
 
+### ATUALIZANDO UM AUTOR NO BANCO DE DADOS
 
+PATCH {{baseurl}}/autores/35
+Content-Type: application/json
+
+{
+    "nome": "Gabriel Lourenco",
+    "cpf": "12312399339",
+    "nacionalidade": "Espanhol",
+    "idade": 18
+}
 
 
 

@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { QueryFailedError, Repository } from 'typeorm';
 import { Autor } from './entities/autor.entity';
 import { CreateAutorDto } from './dto/create-autor.dto';
+import { UpdateAutorDto } from './dto/update-autor.dto';
 
 @Injectable()
 export class AutoresService {
@@ -69,9 +70,34 @@ export class AutoresService {
     return autor;
   }
 
-  // update(id: number, updateAutoreDto: UpdateAutorDto) {
-  //   return `This action updates a #${id} autore`;
-  // }
+  async update(id: number, updateAutorDto: UpdateAutorDto) {
+    const autor = await this.autorRepository.findOneBy({ id: id });
+
+    if (!autor) {
+      throw new NotFoundException(`Autor de ID ${id} não encontrado`);
+    }
+
+    // O .merge() do TypeORM combina o objeto existente com as novas propriedades do DTO.
+    // Ele só sobrescreve as propriedades que estão presentes em updateAutorDto.
+    const autorAtualizado = this.autorRepository.merge(autor, updateAutorDto);
+
+    try {
+      await this.autorRepository.save(autorAtualizado);
+      return autorAtualizado;
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if ((error as any).code === '23505') {
+          throw new ConflictException(
+            'Já existe um autor com CPF fornecido. O CPF deve ser único.',
+          );
+        }
+      }
+      throw new InternalServerErrorException(
+        'Ocorreu um erro interno ao tentar atualizar o autor.',
+      );
+    }
+  }
 
   // remove(id: number) {
   //   return `This action removes a #${id} autore`;
