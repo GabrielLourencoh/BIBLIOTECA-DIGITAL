@@ -45,6 +45,21 @@ export class LivrosService {
       order: {
         id: 'desc',
       },
+      relations: ['autor'],
+      select: {
+        // Seleciona os campos da entidade Livro
+        id: true,
+        titulo: true,
+        isbn: true,
+        genero: true,
+        anoPublicacao: true,
+        paginas: true,
+        // Específica os campos da entidade 'autor' dentro da relação
+        autor: {
+          id: true,
+          nome: true,
+        },
+      },
     });
 
     return livros;

@@ -48,7 +48,7 @@ GET {{baseurl}}/livros/todos/
 
 ### LISTANDO UM LIVRO ESPECIFICO
 
-GET {{baseurl}}/livros/2
+GET {{baseurl}}/livros/1
 
 ### CRIANDO UM LIVRO NO BANCO DE DADOS
 ### CRIANDO UM AUTOR NO BANCO DE DADOS
