@@ -37,6 +37,10 @@ Content-Type: application/json
     "nacionalidade": "Espanhol",
     "idade": 18
 }
+### DELETANDO UM AUTOR NO BANCO DE DADOS
+
+DELETE {{baseurl}}/autores/33/
+
 
 
 
@@ -77,3 +81,4 @@ Content-Type: application/json
     "paginas": 100,
     "autorId": 36
 }
+

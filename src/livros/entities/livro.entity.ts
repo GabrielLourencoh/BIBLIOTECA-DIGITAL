@@ -47,6 +47,7 @@ export class Livro {
   @ManyToOne(
     () => Autor, // Entidade alvo: um Livro tem um único Autor
     (autor) => autor.livros, // Lado inverso: a propriedade 'livros' em Autor aponta de volta para Livro
+    { onDelete: 'CASCADE' }, // para quando fort deletado um autor, esse livro tbm é deletado
   )
   @JoinColumn({ name: 'autorId' }) // Define a coluna 'autorId' como chave estrangeira nesta tabela
   autor: Autor; // Propriedade para carregar o objeto Autor completo

@@ -99,7 +99,21 @@ export class AutoresService {
     }
   }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} autore`;
-  // }
+  async remove(id: number) {
+    const autor = await this.autorRepository.findOneBy({ id: id });
+
+    if (!autor) {
+      throw new NotFoundException(`Autor de ID ${id} não encontrado`);
+    }
+
+    try {
+      await this.autorRepository.remove(autor);
+      return autor;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Ocorreu um erro interno ao tentar remover o autor.',
+      );
+    }
+  }
 }
