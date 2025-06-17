@@ -21,14 +21,14 @@ Content-Type: application/json
 
 {
     "nome": "Gabriel Lourenco",
-    "cpf": "12312323329",
+    "cpf": "12312320329",
     "nacionalidade": "Portugues",
     "idade": 90
 }
 
 ### ATUALIZANDO UM AUTOR NO BANCO DE DADOS
 
-PATCH {{baseurl}}/autores/35
+PATCH {{baseurl}}/autores/3
 Content-Type: application/json
 
 {
@@ -65,7 +65,7 @@ Content-Type: application/json
     "genero": "Futebolistico",
     "anoPublicacao": 41,
     "paginas": 100,
-    "autorId": 36
+    "autorId": 3
 }
 
 ### ATUALIZANDO UM LIVRO NO BANCO DE DADOS

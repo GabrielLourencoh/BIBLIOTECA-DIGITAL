@@ -4,167 +4,118 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-
-import { InjectRepository } from '@nestjs/typeorm';
-import { QueryFailedError, Repository } from 'typeorm';
-import { Livro } from './entities/livro.entity';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateLivroDto } from './dto/create-livro.dto';
-import { Autor } from '../autores/entities/autor.entity';
 import { UpdateLivroDto } from './dto/update-livro.dto';
+import { Livro } from '@prisma/client';
 
 @Injectable()
 export class LivrosService {
-  constructor(
-    @InjectRepository(Livro)
-    private readonly livroRepository: Repository<Livro>,
-    @InjectRepository(Autor)
-    private readonly autorRepository: Repository<Autor>,
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  async create(createLivroDto: CreateLivroDto) {
-    const { autorId } = createLivroDto;
-    // Encontrar o autor que está criando o recado
-    const autor = await this.autorRepository.findOneBy({ id: autorId });
+  async create(createLivroDto: CreateLivroDto): Promise<Livro> {
+    const { autorId, ...dadosLivro } = createLivroDto;
+
+    const autor = await this.prisma.autor.findUnique({
+      where: { id: autorId },
+    });
 
     if (!autor) {
       throw new NotFoundException(`Autor de ID ${autorId} não encontrado`);
     }
 
-    const cadastroLivro = {
-      titulo: createLivroDto.titulo,
-      isbn: createLivroDto.isbn,
-      genero: createLivroDto.genero,
-      anoPublicacao: createLivroDto.anoPublicacao,
-      paginas: createLivroDto.paginas,
-      autor: autor,
-    };
-
     try {
-      const livro = this.livroRepository.create(cadastroLivro);
-      await this.livroRepository.save(livro);
-      return {
-        id: livro.id,
-        titulo: livro.titulo,
-        isbn: livro.isbn,
-        genero: livro.genero,
-        anoPublicacao: livro.anoPublicacao,
-        paginas: livro.paginas,
-        createdAt: livro.createdAt,
-        updatedAt: livro.updatedAt,
-        autor: {
-          id: autor.id, // Usamos o ID do objeto autor que já buscamos
-          nome: autor.nome, // Usamos o nome do objeto autor que já buscamos
+      return await this.prisma.livro.create({
+        data: {
+          ...dadosLivro,
+          autor: { connect: { id: autorId } },
         },
-      } as Livro; // Cast para Livro, para manter a tipagem de retorno.
-    } catch (error) {
-      if (error instanceof QueryFailedError) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if ((error as any).code === '23505') {
-          throw new ConflictException(
-            'Já existe um livro com o ISBN fornecido. O ISBN deve ser único.',
-          );
-        }
+        include: {
+          autor: {
+            select: {
+              id: true,
+              nome: true,
+            },
+          },
+        },
+      });
+    } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (error.code === 'P2002') {
+        throw new ConflictException(
+          'Já existe um livro com o ISBN fornecido. O ISBN deve ser único.',
+        );
       }
       throw new InternalServerErrorException(
-        'Ocorreu um erro interno ao tentar criar o livro.',
+        'Erro interno ao tentar criar o livro.',
       );
     }
   }
 
-  async findAll() {
-    const livros = await this.livroRepository.find({
-      order: {
-        id: 'desc',
-      },
-      relations: ['autor'],
-      select: {
-        // Seleciona os campos da entidade Livro
-        id: true,
-        titulo: true,
-        isbn: true,
-        genero: true,
-        anoPublicacao: true,
-        paginas: true,
-        // Específica os campos da entidade 'autor' dentro da relação
+  async findAll(): Promise<any[]> {
+    return await this.prisma.livro.findMany({
+      orderBy: { id: 'desc' },
+      include: {
         autor: {
-          id: true,
-          nome: true,
+          select: {
+            id: true,
+            nome: true,
+          },
         },
       },
     });
-
-    return livros;
   }
 
-  async findOne(id: number) {
-    const livro = await this.livroRepository.findOne({
-      where: { id: id },
-      relations: ['autor'],
-      select: {
-        // Seleciona os campos da entidade Livro
-        id: true,
-        titulo: true,
-        isbn: true,
-        genero: true,
-        anoPublicacao: true,
-        paginas: true,
-        // Específica os campos da entidade 'autor' dentro da relação
+  async findOne(id: number): Promise<any> {
+    const livro = await this.prisma.livro.findUnique({
+      where: { id },
+      include: {
         autor: {
-          id: true,
-          nome: true,
+          select: {
+            id: true,
+            nome: true,
+          },
         },
       },
     });
 
     if (!livro) {
-      throw new NotFoundException(`O livro de ID: ${id} não foi encontrado!`);
+      throw new NotFoundException(`Livro de ID ${id} não encontrado`);
     }
 
     return livro;
   }
 
-  async update(id: number, updateLivroDto: UpdateLivroDto) {
-    const livro = await this.livroRepository.findOneBy({ id: id });
-
-    if (!livro) {
-      throw new NotFoundException(`Livro de ID ${id} não encontrado`);
-    }
-
-    const livroAtualizado = this.livroRepository.merge(livro, updateLivroDto);
-
+  async update(id: number, updateLivroDto: UpdateLivroDto): Promise<Livro> {
     try {
-      await this.livroRepository.save(livroAtualizado);
-      return livroAtualizado;
-    } catch (error) {
-      if (error instanceof QueryFailedError) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if ((error as any).code === '23505') {
-          throw new ConflictException(
-            'Já existe um livro com o ISBN fornecido. O ISBN deve ser único.',
-          );
-        }
+      return await this.prisma.livro.update({
+        where: { id },
+        data: updateLivroDto,
+      });
+    } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (error.code === 'P2002') {
+        throw new ConflictException('Já existe um livro com o ISBN fornecido.');
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (error.code === 'P2025') {
+        throw new NotFoundException(`Livro de ID ${id} não encontrado`);
       }
       throw new InternalServerErrorException(
-        'Ocorreu um erro interno ao tentar atualizar o livro.',
+        'Erro ao tentar atualizar o livro.',
       );
     }
   }
 
-  async remove(id: number) {
-    const livro = await this.livroRepository.findOneBy({ id: id });
-
-    if (!livro) {
-      throw new NotFoundException(`Livro de ID ${id} não encontrado`);
-    }
-
+  async remove(id: number): Promise<void> {
     try {
-      await this.livroRepository.remove(livro);
-      return livro;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      throw new InternalServerErrorException(
-        'Ocorreu um erro interno ao tentar remover o livro.',
-      );
+      await this.prisma.livro.delete({ where: { id } });
+    } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (error.code === 'P2025') {
+        throw new NotFoundException(`Livro de ID ${id} não encontrado`);
+      }
+      throw new InternalServerErrorException('Erro ao tentar remover o livro.');
     }
   }
 }
