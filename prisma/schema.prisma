@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -12,4 +6,31 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+// Modelo Autor (definido manualmente)
+model Autor {
+  id Int @id @default(autoincrement())
+  nome String @db.VarChar(100)
+  cpf String @unique @db.VarChar(11)
+  nacionalidade String @db.VarChar(50)
+  idade Int 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  livros Livro[] // Relação com o Livro
+}
+
+model Livro {
+  id Int @id @default(autoincrement())
+  titulo String @db.VarChar(100)
+  isbn String @db.VarChar(13)
+  genero String @db.VarChar(40)
+  anoPublicacao Int
+  paginas Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  autorId Int // Chave estrangeira
+  autor Autor @relation(fields: [autorId], references: [id], onDelete: Cascade) // Relação com Autor, com CASCADE
 }
