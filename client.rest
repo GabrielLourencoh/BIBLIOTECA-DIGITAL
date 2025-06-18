@@ -20,26 +20,26 @@ POST {{baseurl}}/autores
 Content-Type: application/json
 
 {
-    "nome": "Gabriel Lourenco",
-    "cpf": "12312320329",
-    "nacionalidade": "Portugues",
-    "idade": 90
+    "nome": "Henrique Lourenço",
+    "cpf": "12312320320",
+    "nacionalidade": "Croata",
+    "idade": 18
 }
 
 ### ATUALIZANDO UM AUTOR NO BANCO DE DADOS
 
-PATCH {{baseurl}}/autores/3
+PATCH {{baseurl}}/autores/8
 Content-Type: application/json
 
 {
-    "nome": "Atualizando o autor: Lourenco",
+    "nome": "Henrique Croata",
     "cpf": "11111199339",
     "nacionalidade": "Espanhol",
     "idade": 18
 }
 ### DELETANDO UM AUTOR NO BANCO DE DADOS
 
-DELETE {{baseurl}}/autores/33
+DELETE {{baseurl}}/autores/1
 
 
 
@@ -52,7 +52,7 @@ GET {{baseurl}}/livros/todos
 
 ### LISTANDO UM LIVRO ESPECIFICO
 
-GET {{baseurl}}/livros/1
+GET {{baseurl}}/livros/8
 
 ### CRIANDO UM LIVRO NO BANCO DE DADOS
 
@@ -60,8 +60,8 @@ POST {{baseurl}}/livros
 Content-Type: application/json
 
 {
-    "titulo": "Ronaldinho soccerssss",
-    "isbn": "1111211111921",
+    "titulo": "Biblia sagrada",
+    "isbn": "1111211111920",
     "genero": "Futebolistico",
     "anoPublicacao": 41,
     "paginas": 100,
@@ -70,16 +70,16 @@ Content-Type: application/json
 
 ### ATUALIZANDO UM LIVRO NO BANCO DE DADOS
 
-PATCH {{baseurl}}/livros/1
+PATCH {{baseurl}}/livros/11
 Content-Type: application/json
 
 {
-    "titulo": "Ronaldinho ss",
+    "titulo": "Biblia sagrada",
     "isbn": "11111111110",
-    "genero": "Futebolistico",
-    "anoPublicacao": 1,
-    "paginas": 100,
-    "autorId": 36
+    "genero": "Religioso",
+    "anoPublicacao": 2020,
+    "paginas": 1000,
+    "autorId": 4
 }
 
 ### DELETANDO UM LIVRO NO BANCO DE DADOS
