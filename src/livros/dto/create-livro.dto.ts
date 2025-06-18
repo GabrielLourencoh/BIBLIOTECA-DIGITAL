@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsNotEmpty,
   IsNumber,
@@ -16,12 +17,14 @@ export class CreateLivroDto {
   @MaxLength(100, {
     message: 'O título deve ter no máximo 100 caracteres.',
   })
+  @ApiProperty({ example: 'Os 7 monstrinhos' })
   titulo: string;
 
   @IsString({ message: 'O IBSN não pode estar vazio.' })
   @MinLength(10, { message: 'O ISBN pode ter no mínimo 10 caracteres' })
   @MaxLength(13, { message: 'O ISBN pode ter no máximo 13 caracteres' })
   @IsNotEmpty({ message: 'O ISBN não pode estar vazio.' })
+  @ApiProperty({ example: '12345678999' })
   isbn: string;
 
   @IsString({ message: 'O gênero não pode estar vazio.' })
@@ -30,6 +33,7 @@ export class CreateLivroDto {
   @MaxLength(40, {
     message: 'O gênero deve ter no máximo 40 caracteres.',
   })
+  @ApiProperty({ example: 'Romance' })
   genero: string;
 
   @IsNumber(
@@ -42,6 +46,7 @@ export class CreateLivroDto {
       'O ano da publicação do livro precisa ser publicado no ano de 2025 para trás',
   })
   @IsNotEmpty({ message: 'O ano da publicação não pode estar vazia.' })
+  @ApiProperty({ example: 2025 })
   anoPublicacao: number;
 
   @IsNumber(
@@ -53,10 +58,12 @@ export class CreateLivroDto {
   })
   @Min(1, { message: 'O livro precisa ter no mínimo uma página' })
   @IsNotEmpty({ message: 'A quantidade de páginas não pode estar vazia.' })
+  @ApiProperty({ example: 50 })
   paginas: number;
 
   @IsNumber({}, { message: 'O ID do autor deve ser um número válido.' })
   @IsPositive({ message: 'O ID do autor precisa ser um número positivo.' })
   @IsNotEmpty({ message: 'O ID do autor não pode estar vazio.' })
+  @ApiProperty({ example: 1 })
   autorId: number; // Campo que recebe o ID do autor
 }

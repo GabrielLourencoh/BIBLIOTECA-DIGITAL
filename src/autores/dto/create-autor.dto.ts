@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
   IsNotEmpty,
@@ -17,6 +18,7 @@ export class CreateAutorDto {
   @MaxLength(100, {
     message: 'A nome deve ter no máximo 100 caracteres.',
   })
+  @ApiProperty({ example: 'Gabriel Lourenço' })
   nome: string;
 
   @IsString({ message: 'O CPF deve ser uma sequência de caracteres.' })
@@ -30,6 +32,7 @@ export class CreateAutorDto {
   @Length(11, 11, {
     message: 'O CPF deve ter exatamente 11 dígitos numéricos.', // Mensagem mais concisa
   })
+  @ApiProperty({ example: '12312312312' })
   cpf: string;
 
   @IsString({ message: 'A nacionalidade não pode estar vazio.' })
@@ -38,11 +41,13 @@ export class CreateAutorDto {
   @MaxLength(100, {
     message: 'A nacionalidade deve ter no máximo 100 caracteres.',
   })
+  @ApiProperty({ example: 'Brasileiro' })
   nacionalidade: string;
 
   @IsNumber({}, { message: 'A idade do autor deve ser um número válido.' })
   @IsPositive({ message: 'A idade precisa ser positiva.' })
   @Min(18, { message: 'O autor precisa ter no mínimo 18 anos.' })
   @IsNotEmpty({ message: 'a idade não pode estar vazia.' })
+  @ApiProperty({ example: 22 })
   idade: number;
 }
