@@ -60,7 +60,7 @@ POST {{baseurl}}/livros
 Content-Type: application/json
 
 {
-    "titulo": "Ronaldinho soccersss",
+    "titulo": "Ronaldinho soccerssss",
     "isbn": "1111211111921",
     "genero": "Futebolistico",
     "anoPublicacao": 41,
