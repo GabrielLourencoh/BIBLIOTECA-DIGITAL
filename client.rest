@@ -2,21 +2,21 @@
 
 ### TESTANDO O HELLO WORLD
 
-GET {{baseurl}}/
+GET {{baseurl}}
 
 ### AUTORES
 
 ### LISTANDO TODOS OS AUTORES
 
-GET {{baseurl}}/autores/todos/
+GET {{baseurl}}/autores/todos
 
 ### LISTANDO UM AUTOR ESPECIFICO
 
-GET {{baseurl}}/autores/3/
+GET {{baseurl}}/autores/3
 
 ### CRIANDO UM AUTOR NO BANCO DE DADOS
 
-POST {{baseurl}}/autores/
+POST {{baseurl}}/autores
 Content-Type: application/json
 
 {
@@ -32,14 +32,14 @@ PATCH {{baseurl}}/autores/3
 Content-Type: application/json
 
 {
-    "nome": "Gabriel Lourenco",
-    "cpf": "12312399339",
+    "nome": "Atualizando o autor: Lourenco",
+    "cpf": "11111199339",
     "nacionalidade": "Espanhol",
     "idade": 18
 }
 ### DELETANDO UM AUTOR NO BANCO DE DADOS
 
-DELETE {{baseurl}}/autores/33/
+DELETE {{baseurl}}/autores/33
 
 
 
@@ -48,7 +48,7 @@ DELETE {{baseurl}}/autores/33/
 
 ### LISTANDO TODOS OS LIVROS
 
-GET {{baseurl}}/livros/todos/
+GET {{baseurl}}/livros/todos
 
 ### LISTANDO UM LIVRO ESPECIFICO
 
@@ -56,7 +56,7 @@ GET {{baseurl}}/livros/1
 
 ### CRIANDO UM LIVRO NO BANCO DE DADOS
 
-POST {{baseurl}}/livros/
+POST {{baseurl}}/livros
 Content-Type: application/json
 
 {
