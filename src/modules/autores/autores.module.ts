@@ -11,17 +11,24 @@ import { AutorRepository } from './application/domain/repositories/autor.reposit
 import { PrismaAutorRepository } from './application/infra/prisma/prisma-autor.repository';
 import { FindAllAutorController } from './application/presentation/controllers/find-all-autor.controller';
 import { FindAllAutorUseCase } from './application/use-cases/find-all-autor.use-case';
+import { FindOneAutorController } from './application/presentation/controllers/find-one-autor.controller';
+import { FindOneAutorUseCase } from './application/use-cases/find-one-autor.use-case';
 
 @Module({
   imports: [
     // TypeOrmModule.forFeature([Autor])
     PrismaModule,
   ], // Registra a entidade Autor para este módulo
-  controllers: [CreateAutorController, FindAllAutorController],
+  controllers: [
+    CreateAutorController,
+    FindAllAutorController,
+    FindOneAutorController,
+  ],
   providers: [
     PrismaService,
     CreateAutorUseCase,
     FindAllAutorUseCase,
+    FindOneAutorUseCase,
     {
       provide: AutorRepository,
       useClass: PrismaAutorRepository,

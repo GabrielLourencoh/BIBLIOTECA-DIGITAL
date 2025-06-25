@@ -22,7 +22,7 @@ export class PrismaAutorRepository implements AutorRepository {
   }
 
   async findOne(id: number): Promise<Autor | null> {
-    return this.prisma.autor.findUnique({
+    return await this.prisma.autor.findUnique({
       where: { id },
     });
   }

@@ -12,7 +12,7 @@ GET {{baseurl}}/autores/todos
 
 ### LISTANDO UM AUTOR ESPECIFICO
 
-GET {{baseurl}}/autores/3
+GET {{baseurl}}/autores/11
 
 ### CRIANDO UM AUTOR NO BANCO DE DADOS
 
