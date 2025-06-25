@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 // import { TypeOrmModule } from '@nestjs/typeorm';
-import { AutoresModule } from 'src/autores/autores.module';
-import { LivrosModule } from 'src/livros/livros.module';
+import { AutoresModule } from 'src/modules/autores/autores.module';
+import { LivrosModule } from 'src/modules/livros/livros.module';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
