@@ -15,7 +15,9 @@ export class PrismaAutorRepository implements AutorRepository {
 
   async findAll(): Promise<Autor[]> {
     return this.prisma.autor.findMany({
-      orderBy: { id: 'desc' },
+      orderBy: {
+        id: 'desc',
+      },
     });
   }
 
