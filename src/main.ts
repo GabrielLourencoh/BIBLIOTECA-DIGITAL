@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
+import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import {
   FastifyAdapter,
@@ -24,7 +24,7 @@ async function bootstrap() {
   // Cria o documento Swagger com base na config e nos endpoints existentes
   const document = SwaggerModule.createDocument(app, config);
 
-  // Ativa a interface Swagger na rota /api (ex: http://localhos:3000/api)
+  // Ativa a interface Swagger na rota /api (ex: http://localhost:3000/api)
   SwaggerModule.setup('api', app, document);
 
   app.useGlobalPipes(

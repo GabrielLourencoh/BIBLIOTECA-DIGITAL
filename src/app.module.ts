@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 // import { TypeOrmModule } from '@nestjs/typeorm';
 import { AutoresModule } from 'src/autores/autores.module';
 import { LivrosModule } from 'src/livros/livros.module';
@@ -22,7 +20,5 @@ import { PrismaModule } from 'src/prisma/prisma.module';
     AutoresModule,
     LivrosModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
