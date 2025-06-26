@@ -13,6 +13,8 @@ import { FindAllAutorController } from './application/presentation/controllers/f
 import { FindAllAutorUseCase } from './application/use-cases/find-all-autor.use-case';
 import { FindOneAutorController } from './application/presentation/controllers/find-one-autor.controller';
 import { FindOneAutorUseCase } from './application/use-cases/find-one-autor.use-case';
+import { UpdateAutorController } from './application/presentation/controllers/update-autor.controller';
+import { UpdateAutorUseCase } from './application/use-cases/update-autor.use-case';
 
 @Module({
   imports: [
@@ -23,12 +25,14 @@ import { FindOneAutorUseCase } from './application/use-cases/find-one-autor.use-
     CreateAutorController,
     FindAllAutorController,
     FindOneAutorController,
+    UpdateAutorController,
   ],
   providers: [
     PrismaService,
     CreateAutorUseCase,
     FindAllAutorUseCase,
     FindOneAutorUseCase,
+    UpdateAutorUseCase,
     {
       provide: AutorRepository,
       useClass: PrismaAutorRepository,

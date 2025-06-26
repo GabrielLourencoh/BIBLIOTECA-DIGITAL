@@ -28,9 +28,9 @@ export class PrismaAutorRepository implements AutorRepository {
   }
 
   async update(id: number, data: UpdateAutorDto): Promise<Autor> {
-    return this.prisma.autor.update({
+    return await this.prisma.autor.update({
       where: { id },
-      data,
+      data: data,
     });
   }
 

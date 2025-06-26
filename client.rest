@@ -32,8 +32,8 @@ PATCH {{baseurl}}/autores/8
 Content-Type: application/json
 
 {
-    "nome": "Henrique Croata",
-    "cpf": "11111199339",
+    "nome": "Atualizando o Henrique",
+    "cpf": "11111109339",
     "nacionalidade": "Espanhol",
     "idade": 18
 }
