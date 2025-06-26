@@ -30,5 +30,5 @@ export abstract class AutorRepository {
   /**
    * Remove um autor com base no ID.
    */
-  abstract remove(id: number): Promise<void>;
+  abstract remove(id: number): Promise<Autor>;
 }

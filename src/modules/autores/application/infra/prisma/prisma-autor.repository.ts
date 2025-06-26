@@ -34,9 +34,9 @@ export class PrismaAutorRepository implements AutorRepository {
     });
   }
 
-  async remove(id: number): Promise<void> {
-    await this.prisma.autor.delete({
-      where: { id },
+  async remove(id: number): Promise<Autor> {
+    return await this.prisma.autor.delete({
+      where: { id: id },
     });
   }
 }

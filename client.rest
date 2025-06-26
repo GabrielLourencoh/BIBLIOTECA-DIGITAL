@@ -39,7 +39,7 @@ Content-Type: application/json
 }
 ### DELETANDO UM AUTOR NO BANCO DE DADOS
 
-DELETE {{baseurl}}/autores/1
+DELETE {{baseurl}}/autores/8
 
 
 
