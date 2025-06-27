@@ -5,21 +5,34 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { UpdateAutorDto } from '../../dto/update-autor.dto';
-import { Autor } from '@prisma/client';
+import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 import { AutorRepository } from '../domain/repositories/autor.repository';
 
 @Injectable()
 export class UpdateAutorUseCase {
   constructor(private readonly autorRepository: AutorRepository) {}
 
-  async execute(id: number, updateAutordto: UpdateAutorDto): Promise<Autor> {
+  async execute(
+    id: number,
+    updateAutordto: UpdateAutorDto,
+  ): Promise<DomainAutorEntity> {
     try {
-      const autorAtualizado = await this.autorRepository.update(
-        id,
-        updateAutordto,
+      const autorAtual = await this.autorRepository.findOne(id);
+      if (!autorAtual) {
+        throw new NotFoundException(`Autor com ID ${id} não encontrado`);
+      }
+
+      const autorAtualizado = new DomainAutorEntity(
+        updateAutordto.nome ?? autorAtual.nome,
+        updateAutordto.cpf ?? autorAtual.cpf,
+        updateAutordto.nacionalidade ?? autorAtual.nacionalidade,
+        updateAutordto.idade ?? autorAtual.idade,
+        updateAutordto.createdAt,
+        new Date(),
+        autorAtual.id,
       );
 
-      return autorAtualizado;
+      return await this.autorRepository.update(id, autorAtualizado);
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2002') {
