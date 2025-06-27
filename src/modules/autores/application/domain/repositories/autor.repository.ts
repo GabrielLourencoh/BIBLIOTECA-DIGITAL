@@ -1,5 +1,3 @@
-import { CreateAutorDto } from '../../presentation/dtos/inputs/create-autor.dto';
-import { UpdateAutorDto } from '../../presentation/dtos/inputs/update-autor.dto';
 import { Autor } from '../entities/autor.entity';
 
 /**
@@ -10,7 +8,7 @@ export abstract class AutorRepository {
   /**
    * Cria um novo autor a partir do DTO recebido.
    */
-  abstract create(data: CreateAutorDto): Promise<Autor>;
+  abstract create(autor: Autor): Promise<Autor>;
 
   /**
    * Retorna todos os autores cadastrados, ordenados conforme necessário.
@@ -25,7 +23,7 @@ export abstract class AutorRepository {
   /**
    * Atualiza um autor existente pelo ID com os dados fornecidos.
    */
-  abstract update(id: number, data: UpdateAutorDto): Promise<Autor>;
+  abstract update(id: number, autor: Autor): Promise<Autor>;
 
   /**
    * Remove um autor com base no ID.
