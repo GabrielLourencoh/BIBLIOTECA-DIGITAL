@@ -3,7 +3,7 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { Autor } from '@prisma/client';
+import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 import { CreateAutorDto } from '../presentation/dtos/inputs/create-autor.dto';
 import { AutorRepository } from '../domain/repositories/autor.repository';
 
@@ -11,9 +11,19 @@ import { AutorRepository } from '../domain/repositories/autor.repository';
 export class CreateAutorUseCase {
   constructor(private readonly autorRepository: AutorRepository) {}
 
-  async execute(createAutorDto: CreateAutorDto): Promise<Autor> {
+  async execute(data: CreateAutorDto): Promise<DomainAutorEntity> {
     try {
-      return await this.autorRepository.create(createAutorDto);
+      const newDomainAutor = new DomainAutorEntity(
+        data.nome,
+        data.cpf,
+        data.nacionalidade,
+        data.idade,
+        new Date(), // createdAt
+        new Date(), // updatedAt
+        undefined,
+      );
+
+      return await this.autorRepository.create(newDomainAutor);
     } catch (error: any) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2002') {

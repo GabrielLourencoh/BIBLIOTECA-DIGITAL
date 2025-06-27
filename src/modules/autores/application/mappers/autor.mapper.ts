@@ -15,13 +15,13 @@ export class AutorMapper {
     }
 
     return new DomainAutor(
-      prismaAutor.id,
       prismaAutor.nome,
       prismaAutor.cpf,
       prismaAutor.nacionalidade,
       prismaAutor.idade,
       prismaAutor.createdAt,
       prismaAutor.updatedAt,
+      prismaAutor.id,
     );
   }
 

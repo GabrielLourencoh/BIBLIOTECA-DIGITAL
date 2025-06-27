@@ -52,9 +52,14 @@ export class PrismaAutorRepository implements AutorRepository {
   }
 
   async update(id: number, data: UpdateAutorDto): Promise<DomainAutorEntity> {
+    const prismaAutorUpdatedData = {
+      ...data,
+      updatedAt: new Date(),
+    };
+
     const prismaAutorUpdated = await this.prisma.autor.update({
       where: { id },
-      data: data,
+      data: prismaAutorUpdatedData,
     });
 
     return AutorMapper.toDomain(prismaAutorUpdated)!;

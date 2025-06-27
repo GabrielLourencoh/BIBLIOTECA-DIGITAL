@@ -1,6 +1,6 @@
 export class Autor {
   // Propriedades
-  id: number;
+  id?: number;
   nome: string;
   cpf: string;
   nacionalidade: string;
@@ -10,13 +10,13 @@ export class Autor {
 
   // Construtor -> Recebe os dados iniciais para criar uma instancia de Autor
   constructor(
-    id: number,
     nome: string,
     cpf: string,
     nacionalidade: string,
     idade: number,
     createdAt: Date,
     updatedAt: Date,
+    id?: number,
   ) {
     this.id = id;
     this.nome = nome;
