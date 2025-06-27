@@ -1,6 +1,6 @@
-import { Autor } from '@prisma/client';
 import { CreateAutorDto } from '../../presentation/dtos/inputs/create-autor.dto';
 import { UpdateAutorDto } from '../../presentation/dtos/inputs/update-autor.dto';
+import { Autor } from '../entities/autor.entity';
 
 /**
  * Esta é a interface que representa o contrato para qualquer repositório
