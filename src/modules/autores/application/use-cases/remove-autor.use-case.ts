@@ -4,13 +4,13 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { AutorRepository } from '../domain/repositories/autor.repository';
-import { Autor } from '@prisma/client';
+import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 
 @Injectable()
 export class RemoveAutorUseCase {
   constructor(private readonly autorRepository: AutorRepository) {}
 
-  async execute(id: number): Promise<Autor> {
+  async execute(id: number): Promise<DomainAutorEntity> {
     try {
       const autorDeleted = await this.autorRepository.remove(id);
 
