@@ -27,7 +27,7 @@ export class UpdateAutorUseCase {
         updateAutordto.cpf ?? autorAtual.cpf,
         updateAutordto.nacionalidade ?? autorAtual.nacionalidade,
         updateAutordto.idade ?? autorAtual.idade,
-        updateAutordto.createdAt,
+        autorAtual.createdAt,
         new Date(),
         autorAtual.id,
       );
