@@ -4,9 +4,9 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { UpdateAutorDto } from '../../dto/update-autor.dto';
 import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 import { AutorRepository } from '../domain/repositories/autor.repository';
+import { UpdateAutorDto } from '../presentation/dtos/inputs/update-autor.dto';
 
 @Injectable()
 export class UpdateAutorUseCase {
