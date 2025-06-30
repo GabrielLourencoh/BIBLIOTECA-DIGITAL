@@ -16,4 +16,5 @@ export class UpdateAutorDto extends PartialType(CreateAutorDto) {
 
   @ApiProperty({ example: 20 })
   idade?: number;
+  createdAt: Date;
 }
