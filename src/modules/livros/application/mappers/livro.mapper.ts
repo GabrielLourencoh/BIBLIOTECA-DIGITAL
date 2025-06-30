@@ -7,7 +7,9 @@ interface LivroPersistence {
   id: number;
   titulo: string;
   isbn: string;
+  genero: string;
   anoPublicacao: number;
+  paginas: number;
   autorId: number;
   createdAt: Date;
   updatedAt: Date;
@@ -20,13 +22,19 @@ export class LivroMapper {
    * @param rawData O objeto de dados brutos da persistência.
    * @returns Uma instância da Entidade de Domínio Livro.
    */
-  public static toDomain(rawData: LivroPersistence): Livro {
+  public static toDomain(rawData: LivroPersistence | null): Livro | null {
+    if (!rawData) {
+      return null;
+    }
+
     // Aqui, new Date() é usado para garantir que as propriedades de data sejam instâncias de Date,
     // caso venham como strings do banco de dados.
     return new Livro(
       rawData.titulo,
       rawData.isbn,
+      rawData.genero,
       rawData.anoPublicacao,
+      rawData.paginas,
       rawData.autorId,
       new Date(rawData.createdAt),
       new Date(rawData.updatedAt),
@@ -47,7 +55,9 @@ export class LivroMapper {
       id: livro.id!, // Assumimos que o ID estará presente para persistência, ou será gerado.
       titulo: livro.titulo,
       isbn: livro.isbn,
+      genero: livro.genero,
       anoPublicacao: livro.anoPublicacao,
+      paginas: livro.paginas,
       autorId: livro.autorId,
       createdAt: livro.createdAt,
       updatedAt: livro.updatedAt,
@@ -68,7 +78,9 @@ export class LivroMapper {
       id: livro.id!,
       titulo: livro.titulo,
       isbn: livro.isbn,
+      genero: livro.genero,
       anoPublicacao: livro.anoPublicacao,
+      paginas: livro.paginas,
       autorId: livro.autorId,
       createdAt: livro.createdAt,
       updatedAt: livro.updatedAt,
