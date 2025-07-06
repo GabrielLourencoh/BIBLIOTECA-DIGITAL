@@ -1,8 +1,8 @@
 @baseurl = http://127.0.0.1:3000
 
-### TESTANDO O HELLO WORLD
+### HEALTH
 
-GET {{baseurl}}
+GET {{baseurl}}/health
 
 ### AUTORES
 
@@ -65,7 +65,7 @@ Content-Type: application/json
     "genero": "Futebolistico",
     "anoPublicacao": 41,
     "paginas": 100,
-    "autorId": 3
+    "autorId": 11
 }
 
 ### ATUALIZANDO UM LIVRO NO BANCO DE DADOS
