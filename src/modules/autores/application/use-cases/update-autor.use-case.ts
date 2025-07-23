@@ -7,10 +7,14 @@ import {
 import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 import { AutorRepository } from '../domain/repositories/autor.repository';
 import { UpdateAutorDto } from '../presentation/dtos/inputs/update-autor.dto';
+import { HashingService } from 'src/modules/auth/domain/services/hashing.service';
 
 @Injectable()
 export class UpdateAutorUseCase {
-  constructor(private readonly autorRepository: AutorRepository) {}
+  constructor(
+    private readonly autorRepository: AutorRepository,
+    private readonly hashingService: HashingService,
+  ) {}
 
   async execute(
     id: number,
@@ -18,13 +22,22 @@ export class UpdateAutorUseCase {
   ): Promise<DomainAutorEntity> {
     try {
       const autorAtual = await this.autorRepository.findOne(id);
+
       if (!autorAtual) {
         throw new NotFoundException(`Autor com ID ${id} não encontrado`);
       }
 
+      let hashedPassword = autorAtual.password;
+
+      if (updateAutordto.password) {
+        hashedPassword = await this.hashingService.hash(
+          updateAutordto.password,
+        );
+      }
+
       const autorAtualizado = new DomainAutorEntity(
         updateAutordto.nome ?? autorAtual.nome,
-        updateAutordto.password ?? autorAtual.password,
+        hashedPassword,
         updateAutordto.cpf ?? autorAtual.cpf,
         updateAutordto.nacionalidade ?? autorAtual.nacionalidade,
         updateAutordto.idade ?? autorAtual.idade,

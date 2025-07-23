@@ -4,6 +4,7 @@ import { AutoresModule } from 'src/modules/autores/autores.module';
 import { LivrosModule } from 'src/modules/livros/livros.module';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { HealthModule } from './modules/health/health.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { HealthModule } from './modules/health/health.module';
     //   autoLoadEntities: true, // Carrega entidades sem precisar especificá-las
     //   synchronize: true, // Sincroniza com o BD. Não deve ser usado em produção
     // }),
+    AuthModule,
     HealthModule,
     PrismaModule,
     AutoresModule,

@@ -10,7 +10,7 @@ datasource db {
 model Autor {
   id           Int      @id @default(autoincrement())
   nome         String   @db.VarChar(100)
-  password     String   @db.VarChar(30)
+  password     String   @db.VarChar(60)
   cpf          String   @unique @db.VarChar(11)
   nacionalidade String  @db.VarChar(50)
   idade        Int

@@ -6,16 +6,22 @@ import {
 import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 import { CreateAutorDto } from '../presentation/dtos/inputs/create-autor.dto';
 import { AutorRepository } from '../domain/repositories/autor.repository';
+import { HashingService } from 'src/modules/auth/domain/services/hashing.service';
 
 @Injectable()
 export class CreateAutorUseCase {
-  constructor(private readonly autorRepository: AutorRepository) {}
+  constructor(
+    private readonly autorRepository: AutorRepository,
+    private readonly hashingService: HashingService,
+  ) {}
 
   async execute(data: CreateAutorDto): Promise<DomainAutorEntity> {
     try {
+      const hashedPassword = await this.hashingService.hash(data.password);
+
       const newDomainAutor = new DomainAutorEntity(
         data.nome,
-        data.password,
+        hashedPassword,
         data.cpf,
         data.nacionalidade,
         data.idade,
