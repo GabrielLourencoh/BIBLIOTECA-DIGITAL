@@ -21,6 +21,15 @@ export class CreateAutorDto {
   @ApiProperty({ example: 'Gabriel Lourenço' })
   nome: string;
 
+  @IsString({ message: 'A senha não pode estar vazio.' })
+  @IsNotEmpty({ message: 'A senha não pode estar vazio.' })
+  @MinLength(5, { message: 'A senha deve ter no mínimo 5 caracteres.' })
+  @MaxLength(100, {
+    message: 'A senha deve ter no máximo 20 caracteres.',
+  })
+  @ApiProperty({ example: 'Minha_senha-foSrte@123' })
+  password: string;
+
   @IsString({ message: 'O CPF deve ser uma sequência de caracteres.' })
   @IsNotEmpty({ message: 'O CPF não pode estar vazio.' })
   //    @Transform: Remove caracteres não-dígitos PRIMEIRO.

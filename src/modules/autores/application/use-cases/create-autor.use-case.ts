@@ -15,6 +15,7 @@ export class CreateAutorUseCase {
     try {
       const newDomainAutor = new DomainAutorEntity(
         data.nome,
+        data.password,
         data.cpf,
         data.nacionalidade,
         data.idade,

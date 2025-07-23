@@ -8,10 +8,13 @@ export class UpdateAutorDto extends PartialType(CreateAutorDto) {
   @ApiProperty({ example: 'Gabriel Lourenço Atualizado' })
   nome?: string;
 
+  @ApiProperty({ example: 'Minha_senha-forte@123atualizada' })
+  password?: string;
+
   @ApiProperty({ example: '12312312390' })
   cpf?: string;
 
-  @ApiProperty({ example: 'Croata' })
+  @ApiProperty({ example: 'Canadense' })
   nacionalidade?: string;
 
   @ApiProperty({ example: 20 })

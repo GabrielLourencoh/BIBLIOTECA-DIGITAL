@@ -24,6 +24,7 @@ export class UpdateAutorUseCase {
 
       const autorAtualizado = new DomainAutorEntity(
         updateAutordto.nome ?? autorAtual.nome,
+        updateAutordto.password ?? autorAtual.password,
         updateAutordto.cpf ?? autorAtual.cpf,
         updateAutordto.nacionalidade ?? autorAtual.nacionalidade,
         updateAutordto.idade ?? autorAtual.idade,

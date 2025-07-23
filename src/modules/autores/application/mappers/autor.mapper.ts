@@ -16,6 +16,7 @@ export class AutorMapper {
 
     return new DomainAutor(
       prismaAutor.nome,
+      prismaAutor.password,
       prismaAutor.cpf,
       prismaAutor.nacionalidade,
       prismaAutor.idade,
@@ -34,6 +35,7 @@ export class AutorMapper {
     return {
       id: domainAutor.id,
       nome: domainAutor.nome,
+      password: domainAutor.password,
       cpf: domainAutor.cpf,
       nacionalidade: domainAutor.nacionalidade,
       idade: domainAutor.idade,

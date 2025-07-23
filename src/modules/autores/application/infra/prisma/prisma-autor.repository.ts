@@ -16,6 +16,7 @@ export class PrismaAutorRepository implements AutorRepository {
     // Usamos os dados diretamente do DTO para criar no Prisma.
     const prismaData = {
       nome: data.nome,
+      password: data.password,
       cpf: data.cpf,
       nacionalidade: data.nacionalidade,
       idade: data.idade,
