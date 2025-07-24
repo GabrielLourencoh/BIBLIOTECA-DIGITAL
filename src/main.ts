@@ -19,6 +19,18 @@ async function bootstrap() {
     .setTitle('Biblioteca Digital') // Titulo da documentação
     .setDescription('API de gerenciamento de autores e livros') // Descrição opcional
     .setVersion('1.0') // Versão da API
+    .addBearerAuth(
+      // ✅ Adiciona o esquema de segurança BearerAuth
+      {
+        type: 'http', // Tipo de esquema de segurança
+        scheme: 'bearer', // Esquema (Bearer)
+        bearerFormat: 'JWT', // Formato (JWT)
+        description: 'Insira o token JWT (Bearer) aqui para autenticação', // Descrição para o usuário
+        name: 'Authorization', // Nome do cabeçalho
+        in: 'header', // Onde o token é enviado (no cabeçalho)
+      },
+      'access-token', // ✅ Nome de segurança único para referenciar este esquema
+    )
     .build();
 
   // Cria o documento Swagger com base na config e nos endpoints existentes
