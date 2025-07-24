@@ -45,7 +45,7 @@ export class AuthController {
   @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Retorna o perfil do autor autenticado' })
   @ApiResponse({
-    status: HttpStatus.OK,
+    status: 200,
     description: 'Perfil do autor retornado com sucesso',
   })
   @ApiResponse({
