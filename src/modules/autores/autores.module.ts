@@ -1,8 +1,4 @@
 import { Module } from '@nestjs/common';
-// import { AutoresService } from './autores.service';
-// import { AutoresController } from './autores.controller';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { Autor } from './entities/autor.entity';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { CreateAutorController } from './application/presentation/controllers/create-autor.controller';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -17,6 +13,7 @@ import { UpdateAutorController } from './application/presentation/controllers/up
 import { UpdateAutorUseCase } from './application/use-cases/update-autor.use-case';
 import { RemoveAutorController } from './application/presentation/controllers/remove-autor.controller';
 import { RemoveAutorUseCase } from './application/use-cases/remove-autor.use-case';
+import { AutorMapper } from './application/mappers/autor.mapper';
 
 @Module({
   imports: [
@@ -41,6 +38,8 @@ import { RemoveAutorUseCase } from './application/use-cases/remove-autor.use-cas
       provide: AutorRepository,
       useClass: PrismaAutorRepository,
     },
+    AutorMapper,
   ],
+  exports: [AutorRepository],
 })
 export class AutoresModule {}

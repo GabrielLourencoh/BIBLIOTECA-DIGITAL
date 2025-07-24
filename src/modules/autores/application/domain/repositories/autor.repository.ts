@@ -29,4 +29,6 @@ export abstract class AutorRepository {
    * Remove um autor com base no ID.
    */
   abstract remove(id: number): Promise<Autor>;
+
+  abstract findByCpf(cpf: string): Promise<Autor | null>;
 }

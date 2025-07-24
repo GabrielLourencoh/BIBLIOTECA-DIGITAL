@@ -5,24 +5,20 @@ import { LivrosModule } from 'src/modules/livros/livros.module';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { HealthModule } from './modules/health/health.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: 'localhost',
-    //   port: 5432, // Porta padrao
-    //   username: 'postgres', //usernamepadrao
-    //   database: 'biblioteca_digital', //nome do banco
-    //   password: '240024',
-    //   autoLoadEntities: true, // Carrega entidades sem precisar especificá-las
-    //   synchronize: true, // Sincroniza com o BD. Não deve ser usado em produção
-    // }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     AuthModule,
     HealthModule,
     PrismaModule,
     AutoresModule,
     LivrosModule,
+    AutoresModule,
   ],
 })
 export class AppModule {}

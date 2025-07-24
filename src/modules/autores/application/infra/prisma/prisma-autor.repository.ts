@@ -73,4 +73,9 @@ export class PrismaAutorRepository implements AutorRepository {
 
     return AutorMapper.toDomain(prismaAutorRemoved)!;
   }
+
+  async findByCpf(cpf: string): Promise<DomainAutorEntity | null> {
+    const prismaAutor = await this.prisma.autor.findUnique({ where: { cpf } });
+    return AutorMapper.toDomain(prismaAutor);
+  }
 }
