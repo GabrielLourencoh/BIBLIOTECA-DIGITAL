@@ -10,11 +10,17 @@ import {
 import { LoginAutorUseCase } from '../../application/use-cases/login-autor.use-case';
 import { LoginDto } from '../dtos/inputs/login.dto';
 import { LoginResponseDto } from '../dtos/outputs/login-response.dto';
-import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthGuard } from '../guards/auth.guard';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { AuthPayloadEntity } from '../../domain/entities/auth-payload.entity';
 
+@ApiTags('Authorization')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly loginAutorUseCase: LoginAutorUseCase) {}
