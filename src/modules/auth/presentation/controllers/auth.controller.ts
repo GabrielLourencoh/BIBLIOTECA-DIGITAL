@@ -1,24 +1,8 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { LoginAutorUseCase } from '../../application/use-cases/login-autor.use-case';
 import { LoginDto } from '../dtos/inputs/login.dto';
 import { LoginResponseDto } from '../dtos/outputs/login-response.dto';
-import {
-  ApiBearerAuth,
-  ApiOperation,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
-import { AuthGuard } from '../guards/auth.guard';
-import { CurrentUser } from '../decorators/current-user.decorator';
-import { AuthPayloadEntity } from '../../domain/entities/auth-payload.entity';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Authorization')
 @Controller('auth')
@@ -44,28 +28,5 @@ export class AuthController {
     const AuthTokenOutput = await this.loginAutorUseCase.execute(loginDto);
 
     return new LoginResponseDto(AuthTokenOutput.accessToken);
-  }
-
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  @ApiBearerAuth('access-token')
-  @ApiOperation({ summary: 'Retorna o perfil do autor autenticado' })
-  @ApiResponse({
-    status: 200,
-    description: 'Perfil do autor retornado com sucesso',
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: 'Token inválido ou expirado',
-  })
-  @ApiResponse({ status: 500, description: 'Erro interno do servidor' })
-  getProfile(@CurrentUser() payload: AuthPayloadEntity) {
-    return {
-      message: 'Acesso permitido ao perfil do autor!',
-      autor: {
-        id: payload.id,
-        nome: payload.nome,
-      },
-    };
   }
 }

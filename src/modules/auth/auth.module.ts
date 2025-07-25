@@ -10,6 +10,7 @@ import { JwtService } from './domain/services/jwt.service';
 import { NestJwtServiceAdapter } from './infra/jwt/nest-jwt.service';
 import { AuthGuard } from './presentation/guards/auth.guard';
 import { LoginAutorUseCase } from './application/use-cases/login-autor.use-case';
+import { ProfileController } from './presentation/controllers/profile.controller';
 
 @Global()
 @Module({
@@ -29,7 +30,7 @@ import { LoginAutorUseCase } from './application/use-cases/login-autor.use-case'
     }),
     AutoresModule,
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, ProfileController],
   providers: [
     LoginAutorUseCase,
     {
