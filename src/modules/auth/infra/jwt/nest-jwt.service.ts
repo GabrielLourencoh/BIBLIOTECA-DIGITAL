@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { AuthPayloadEntity } from '../../domain/entities/auth-payload.entity';
@@ -17,7 +18,7 @@ export class NestJwtServiceAdapter implements JwtService {
 
   async sign(payload: AuthPayloadEntity): Promise<string> {
     const token = await this.nestJwtService.signAsync(
-      { sub: payload.id, cpf: payload.cpf },
+      { sub: payload.id, cpf: payload.cpf, nome: payload.nome },
       {
         secret: this.jwtConfiguration.secret,
         expiresIn: this.jwtConfiguration.jwtTtl,
@@ -36,8 +37,12 @@ export class NestJwtServiceAdapter implements JwtService {
         issuer: this.jwtConfiguration.issuer,
       });
       // Mapeia o payload decodificado de volta para sua entidade de domínio (com CPF).
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      return new AuthPayloadEntity(decodedPayload.sub, decodedPayload.cpf);
+
+      return new AuthPayloadEntity(
+        decodedPayload.sub,
+        decodedPayload.cpf,
+        decodedPayload.nome,
+      );
     } catch (error) {
       console.log(error);
       throw new UnauthorizedException('Token inválido ou expirado.');

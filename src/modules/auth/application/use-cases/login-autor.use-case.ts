@@ -30,7 +30,7 @@ export class LoginAutorUseCase {
       throw new UnauthorizedException('Credenciais inválidas.');
     }
 
-    const payload = new AuthPayloadEntity(autor.id!, autor.cpf);
+    const payload = new AuthPayloadEntity(autor.id!, autor.cpf, autor.nome);
     const accessToken = await this.jwtService.sign(payload);
 
     return new AuthTokenOutput(accessToken);

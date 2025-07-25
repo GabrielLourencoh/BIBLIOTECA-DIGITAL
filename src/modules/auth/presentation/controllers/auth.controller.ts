@@ -64,7 +64,7 @@ export class AuthController {
       message: 'Acesso permitido ao perfil do autor!',
       autor: {
         id: payload.id,
-        cpf: payload.cpf,
+        nome: payload.nome,
       },
     };
   }
