@@ -80,7 +80,7 @@ DATABASE_URL="postgresql://postgres:123456@localhost:5432/meu_banco?schema=publi
 
 # JWT
 JWT_SECRET=sua_chave_secreta # Chave secreta
-JWT_TTL=3600 # Tempo de vida do token
+JWT_TTL=3600 # Tempo de vida do token, em segundos
 JWT_AUDIENCE=http://localhost:3000 # Onde está gerando o token
 JWT_ISSUER=http://localhost:3000 # Quem está gerando 
 ```
