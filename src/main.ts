@@ -7,6 +7,7 @@ import {
 } from '@nestjs/platform-fastify';
 // Importando módulos do Swagger
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { env } from './config/env';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -47,7 +48,15 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(env.APP_PORT ?? 3000);
+
+  if (env.APP_ENV === 'dev') {
+    console.log('------------------------------------');
+    console.log(`API rodando na porta ${env.APP_PORT}.`);
+    console.log(`API: ${env.APP_URL}`);
+    console.log(`Docs: ${env.APP_URL}/api`);
+    console.log('------------------------------------');
+  }
 }
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 bootstrap();
