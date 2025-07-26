@@ -7,6 +7,7 @@ import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 import { CreateAutorDto } from '../presentation/dtos/inputs/create-autor.dto';
 import { AutorRepository } from '../domain/repositories/autor.repository';
 import { HashingService } from 'src/modules/auth/domain/services/hashing.service';
+import { CreateAutorOutputDto } from '../presentation/dtos/outputs/create-autor.output';
 
 @Injectable()
 export class CreateAutorUseCase {
@@ -15,7 +16,7 @@ export class CreateAutorUseCase {
     private readonly hashingService: HashingService,
   ) {}
 
-  async execute(data: CreateAutorDto): Promise<DomainAutorEntity> {
+  async execute(data: CreateAutorDto): Promise<CreateAutorOutputDto> {
     try {
       const hashedPassword = await this.hashingService.hash(data.password);
 
@@ -30,7 +31,9 @@ export class CreateAutorUseCase {
         undefined,
       );
 
-      return await this.autorRepository.create(newDomainAutor);
+      const autorCriado = await this.autorRepository.create(newDomainAutor);
+
+      return new CreateAutorOutputDto('Autor criado com sucesso!', autorCriado);
     } catch (error: any) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2002') {
