@@ -24,7 +24,7 @@ export class FindOneAutorController {
   @ApiResponse({ status: 404, description: 'Autor não encontrado' })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({
-    description: 'Autores encontrados com sucesso!',
+    description: 'Autor encontrado com sucesso!',
     type: FindOneAutorOutputDto,
   })
   @Get(':id')
