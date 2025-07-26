@@ -6,12 +6,13 @@ import {
 import { LivroRepository } from '../domain/repositories/livro.repository';
 import { CreateLivroDto } from '../presentation/dtos/inputs/create-livro.dto';
 import { Livro as DomainLivroEntity } from '../domain/entities/livro.entity';
+import { CreateLivroOutputDto } from '../presentation/dtos/outputs/create-livro.output';
 
 @Injectable()
 export class CreateLivroUseCase {
   constructor(private readonly livroRepository: LivroRepository) {}
 
-  async execute(createLivroDto: CreateLivroDto): Promise<DomainLivroEntity> {
+  async execute(createLivroDto: CreateLivroDto): Promise<CreateLivroOutputDto> {
     try {
       const novoLivro = new DomainLivroEntity(
         createLivroDto.titulo,
@@ -27,7 +28,7 @@ export class CreateLivroUseCase {
 
       const livroCriado = await this.livroRepository.create(novoLivro);
 
-      return livroCriado;
+      return new CreateLivroOutputDto('Livro criado com sucesso!', livroCriado);
     } catch (error: any) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2002') {
