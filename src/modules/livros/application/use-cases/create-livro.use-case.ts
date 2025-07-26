@@ -31,9 +31,9 @@ export class CreateLivroUseCase {
     } catch (error: any) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2002') {
-        throw new ConflictException('Já existe um autor com este CPF.');
+        throw new ConflictException('Já existe um livro com este ISBN.');
       }
-      throw new InternalServerErrorException('Erro ao criar o autor.');
+      throw new InternalServerErrorException('Erro ao criar o livro.');
     }
   }
 }
