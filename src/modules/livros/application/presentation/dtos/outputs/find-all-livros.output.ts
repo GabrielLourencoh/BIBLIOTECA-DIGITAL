@@ -3,16 +3,16 @@ import { Livro as DomainLivroEntity } from '../../../domain/entities/livro.entit
 
 export class FindAllLivrosOutputdto {
   @ApiProperty({
-    type: DomainLivroEntity,
-    description: 'Array de livros encontrados',
-  })
-  livros: DomainLivroEntity[];
-
-  @ApiProperty({
     example: 10,
     description: 'Quantidade total de livros encontrados ',
   })
   total: number;
+
+  @ApiProperty({
+    type: DomainLivroEntity,
+    description: 'Array de livros encontrados',
+  })
+  livros: DomainLivroEntity[];
 
   constructor(total: number, livros: DomainLivroEntity[]) {
     this.total = total;
