@@ -8,6 +8,7 @@ import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
 import { AutorRepository } from '../domain/repositories/autor.repository';
 import { UpdateAutorDto } from '../presentation/dtos/inputs/update-autor.dto';
 import { HashingService } from 'src/modules/auth/domain/services/hashing.service';
+import { UpdateAutorOutputDto } from '../presentation/dtos/outputs/update-autor.output';
 
 @Injectable()
 export class UpdateAutorUseCase {
@@ -19,7 +20,7 @@ export class UpdateAutorUseCase {
   async execute(
     id: number,
     updateAutordto: UpdateAutorDto,
-  ): Promise<DomainAutorEntity> {
+  ): Promise<UpdateAutorOutputDto> {
     try {
       const autorAtual = await this.autorRepository.findOne(id);
 
@@ -35,7 +36,7 @@ export class UpdateAutorUseCase {
         );
       }
 
-      const autorAtualizado = new DomainAutorEntity(
+      const autor = new DomainAutorEntity(
         updateAutordto.nome ?? autorAtual.nome,
         hashedPassword,
         updateAutordto.cpf ?? autorAtual.cpf,
@@ -46,7 +47,12 @@ export class UpdateAutorUseCase {
         autorAtual.id,
       );
 
-      return await this.autorRepository.update(id, autorAtualizado);
+      const autorAtualizado = await this.autorRepository.update(id, autor);
+
+      return new UpdateAutorOutputDto(
+        'Autor atualizado com sucesso!',
+        autorAtualizado,
+      );
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2002') {

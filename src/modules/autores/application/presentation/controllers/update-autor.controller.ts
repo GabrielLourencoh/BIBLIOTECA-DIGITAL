@@ -19,6 +19,7 @@ export class UpdateAutorController {
   @ApiOperation({ summary: 'Atualizar um autor por ID' })
   @ApiResponse({ status: 200, description: 'Autor atualizado com sucesso' })
   @ApiResponse({ status: 404, description: 'Autor não encontrado' })
+  @ApiResponse({ status: 500, description: 'Erro interno do servidor' })
   @HttpCode(HttpStatus.OK)
   @Patch(':id')
   async handle(
