@@ -26,4 +26,12 @@ export class PrismaLivroRepository implements LivroRepository {
 
     return LivroMapper.toDomain(createdLivroMapper)!;
   }
+
+  async findAll(): Promise<DomainLivroEntity[]> {
+    const prismaLivros = await this.prisma.livro.findMany({
+      orderBy: { id: 'desc' },
+    });
+
+    return prismaLivros.map((livro) => LivroMapper.toDomain(livro)!);
+  }
 }

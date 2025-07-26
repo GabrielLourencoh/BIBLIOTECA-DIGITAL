@@ -9,11 +9,11 @@ export class CreateAutorController {
   constructor(private readonly createAutorUseCase: CreateAutorUseCase) {}
 
   @HttpCode(HttpStatus.CREATED)
-  @Post()
   @ApiOperation({ summary: 'Criar um novo autor' })
   @ApiResponse({ status: 201, description: 'Autor criado com sucesso' })
   @ApiResponse({ status: 409, description: 'CPF duplicado' })
   @ApiResponse({ status: 500, description: 'Erro interno do servidor' })
+  @Post('/criar')
   async handle(@Body() createAutorDto: CreateAutorDto) {
     const novoAutor = await this.createAutorUseCase.execute(createAutorDto);
     return novoAutor;

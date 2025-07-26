@@ -4,4 +4,7 @@ import { Livro } from '../entities/livro.entity';
 export abstract class LivroRepository {
   // MÉTODO CREATE
   abstract create(livro: Livro): Promise<Livro>;
+
+  // MÉTODO FINDALL
+  abstract findAll(): Promise<Livro[]>;
 }

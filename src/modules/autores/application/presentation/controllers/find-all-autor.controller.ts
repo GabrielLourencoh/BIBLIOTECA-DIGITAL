@@ -12,8 +12,8 @@ export class FindAllAutorController {
     status: 200,
     description: 'Lista de autores retornada com sucesso',
   })
-  @Get('/todos/')
   @HttpCode(HttpStatus.OK)
+  @Get('/todos')
   async handle() {
     // Delega a lógica de busca para o Use Case.
     const autores = await this.findAllAutorUseCase.execute();

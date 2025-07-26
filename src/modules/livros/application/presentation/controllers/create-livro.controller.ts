@@ -3,12 +3,12 @@ import { CreateLivroUseCase } from '../../use-cases/create-livro.use-case';
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { CreateLivroDto } from '../dtos/inputs/create-livro.dto';
 
-@ApiTags('livros')
+@ApiTags('Livros')
 @Controller('livros')
 export class CreateLivroController {
   constructor(private readonly createLivroUseCase: CreateLivroUseCase) {}
 
-  @Post()
+  @Post('/criar')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Criar um novo livro' })
   @ApiResponse({ status: 201, description: 'Livro criado com sucesso' })
