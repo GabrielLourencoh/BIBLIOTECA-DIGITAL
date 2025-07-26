@@ -23,7 +23,6 @@ export class RemoveAutorController {
     const autorDeleted = await this.removeAutorUseCase.execute(id);
 
     return {
-      message: 'Autor removido com sucesso',
       autorDeleted,
     };
   }

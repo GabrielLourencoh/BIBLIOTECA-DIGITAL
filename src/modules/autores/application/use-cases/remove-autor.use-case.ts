@@ -4,17 +4,20 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { AutorRepository } from '../domain/repositories/autor.repository';
-import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
+import { RemoveAutorOutputDto } from '../presentation/dtos/outputs/remove-autor.output';
 
 @Injectable()
 export class RemoveAutorUseCase {
   constructor(private readonly autorRepository: AutorRepository) {}
 
-  async execute(id: number): Promise<DomainAutorEntity> {
+  async execute(id: number): Promise<RemoveAutorOutputDto> {
     try {
       const autorDeleted = await this.autorRepository.remove(id);
 
-      return autorDeleted;
+      return new RemoveAutorOutputDto(
+        'Autor removido com sucesso!',
+        autorDeleted,
+      );
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2025') {
