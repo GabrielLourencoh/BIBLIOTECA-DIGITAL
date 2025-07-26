@@ -22,6 +22,9 @@ export class RemoveAutorController {
   async handle(@Param('id', ParseIntPipe) id: number) {
     const autorDeleted = await this.removeAutorUseCase.execute(id);
 
-    return autorDeleted;
+    return {
+      message: 'Autor removido com sucesso',
+      autorDeleted,
+    };
   }
 }

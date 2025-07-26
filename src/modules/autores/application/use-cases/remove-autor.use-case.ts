@@ -19,7 +19,7 @@ export class RemoveAutorUseCase {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (error.code === 'P2025') {
         throw new NotFoundException(
-          `Autor de ID: ${id} não encontrado para remoção.`,
+          `Autor de ID: '${id}' não foi encontrado para remoção.`,
         );
       }
       throw new InternalServerErrorException(
