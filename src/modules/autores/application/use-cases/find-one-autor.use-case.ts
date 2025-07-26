@@ -4,13 +4,13 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { AutorRepository } from '../domain/repositories/autor.repository';
-import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
+import { FindOneAutorOutputDto } from '../presentation/dtos/outputs/find-one-autor.output';
 
 @Injectable()
 export class FindOneAutorUseCase {
   constructor(private readonly autorRepository: AutorRepository) {}
 
-  async execute(id: number): Promise<DomainAutorEntity> {
+  async execute(id: number): Promise<FindOneAutorOutputDto> {
     try {
       const autor = await this.autorRepository.findOne(id);
 
@@ -18,7 +18,7 @@ export class FindOneAutorUseCase {
         throw new NotFoundException(`Autor de ID ${id} não encontrado`);
       }
 
-      return autor;
+      return new FindOneAutorOutputDto('Autor encotrado com sucesso!', autor);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
