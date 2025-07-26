@@ -4,11 +4,11 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateAutorDto } from './dto/create-autor.dto';
-import { UpdateAutorDto } from './dto/update-autor.dto';
 
 import { PrismaService } from '../../prisma/prisma.service';
 import { Autor } from '@prisma/client';
+import { CreateAutorDto } from './application/presentation/dtos/inputs/create-autor.dto';
+import { UpdateAutorDto } from './application/presentation/dtos/inputs/update-autor.dto';
 
 @Injectable()
 export class AutoresService {
