@@ -2,6 +2,7 @@ import { Livro } from '../domain/entities/livro.entity';
 
 // Define uma interface para a estrutura de dados do Livro como ela aparece no banco de dados (persistência).
 // Isso é útil porque o Prisma, por exemplo, gera seus próprios tipos.
+
 // Por enquanto, usamos um tipo genérico que reflete as propriedades que esperamos.
 interface LivroPersistence {
   id?: number;

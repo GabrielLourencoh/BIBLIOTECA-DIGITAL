@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Livro as DomainLivroEntity } from '../../../domain/entities/livro.entity';
+import { Livro as DomainLivroEntity } from 'src/modules/livros/domain/entities/livro.entity';
 
 export class FindAllLivrosOutputdto {
   @ApiProperty({

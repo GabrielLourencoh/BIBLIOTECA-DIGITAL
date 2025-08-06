@@ -4,10 +4,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { CreateLivroUseCase } from '../../use-cases/create-livro.use-case';
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { CreateLivroDto } from '../dtos/inputs/create-livro.dto';
 import { CreateLivroOutputDto } from '../dtos/outputs/create-livro.output';
+import { CreateLivroUseCase } from '../../application/use-cases/create-livro.use-case';
 
 @ApiTags('Livros')
 @Controller('livros')

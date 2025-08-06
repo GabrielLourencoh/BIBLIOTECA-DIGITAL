@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { LivroRepository } from '../domain/repositories/livro.repository';
-import { FindAllLivrosOutputdto } from '../presentation/dtos/outputs/find-all-livros.output';
+import { LivroRepository } from '../../domain/repositories/livro.repository';
+import { FindAllLivrosOutputdto } from '../../presentation/dtos/outputs/find-all-livros.output';
 
 @Injectable()
 export class FindAllLivroUseCase {

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { LivroRepository } from '../../domain/repositories/livro.repository';
 import { Livro as DomainLivroEntity } from '../../domain/entities/livro.entity';
-import { LivroMapper } from '../../mappers/livro.mapper';
 import { Livro as PrismaLivroModel } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { LivroMapper } from '../../mappers/livro.mapper';
 
 @Injectable()
 export class PrismaLivroRepository implements LivroRepository {

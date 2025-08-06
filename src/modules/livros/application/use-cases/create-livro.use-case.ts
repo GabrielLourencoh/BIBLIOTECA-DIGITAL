@@ -3,10 +3,10 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { LivroRepository } from '../domain/repositories/livro.repository';
-import { CreateLivroDto } from '../presentation/dtos/inputs/create-livro.dto';
-import { Livro as DomainLivroEntity } from '../domain/entities/livro.entity';
-import { CreateLivroOutputDto } from '../presentation/dtos/outputs/create-livro.output';
+import { LivroRepository } from '../../domain/repositories/livro.repository';
+import { Livro as DomainLivroEntity } from '../../domain/entities/livro.entity';
+import { CreateLivroDto } from '../../presentation/dtos/inputs/create-livro.dto';
+import { CreateLivroOutputDto } from '../../presentation/dtos/outputs/create-livro.output';
 
 @Injectable()
 export class CreateLivroUseCase {
