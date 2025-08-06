@@ -12,8 +12,8 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { RemoveAutorUseCase } from '../../use-cases/remove-autor.use-case';
 import { RemoveAutorOutputDto } from '../dtos/outputs/remove-autor.output';
+import { RemoveAutorUseCase } from '../../application/use-cases/remove-autor.use-case';
 
 @ApiTags('Autores')
 @Controller('autores')

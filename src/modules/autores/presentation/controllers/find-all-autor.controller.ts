@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { FindAllAutorUseCase } from '../../use-cases/find-all-autor.use-case';
 import { FindAllAutoresOutputDto } from '../dtos/outputs/find-all-autores.output';
+import { FindAllAutorUseCase } from '../../application/use-cases/find-all-autor.use-case';
 
 @ApiTags('Autores')
 @Controller('autores')

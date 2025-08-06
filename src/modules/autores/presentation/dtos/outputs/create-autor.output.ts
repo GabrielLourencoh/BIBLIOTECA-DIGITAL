@@ -1,21 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Autor as DomainAutorEntity } from '../../../domain/entities/autor.entity';
+import { Autor as DomainAutorEntity } from 'src/modules/autores/domain/entities/autor.entity';
 
-export class UpdateAutorOutputDto {
+export class CreateAutorOutputDto {
   @ApiProperty({
-    example: 'Autor atualizado com sucesso!',
+    example: 'Autor criado com sucesso!',
     description: 'Mensagem de status da operação.',
   })
   message: string;
 
   @ApiProperty({
-    type: [DomainAutorEntity],
-    description: 'Autor encontrado',
+    type: DomainAutorEntity,
+    description: 'Autor criado com sucesso!',
   })
   autor: DomainAutorEntity;
 
   constructor(message: string, autor: DomainAutorEntity) {
-    this.message = message;
     this.autor = autor;
+    this.message = message;
   }
 }

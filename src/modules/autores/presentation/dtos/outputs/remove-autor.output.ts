@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Autor as DomainAutorEntity } from '../../../domain/entities/autor.entity';
+import { Autor as DomainAutorEntity } from 'src/modules/autores/domain/entities/autor.entity';
 
 export class RemoveAutorOutputDto {
   @ApiProperty({

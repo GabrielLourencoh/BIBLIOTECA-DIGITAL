@@ -3,8 +3,8 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { AutorRepository } from '../domain/repositories/autor.repository';
-import { FindOneAutorOutputDto } from '../presentation/dtos/outputs/find-one-autor.output';
+import { AutorRepository } from '../../domain/repositories/autor.repository';
+import { FindOneAutorOutputDto } from '../../presentation/dtos/outputs/find-one-autor.output';
 
 @Injectable()
 export class FindOneAutorUseCase {

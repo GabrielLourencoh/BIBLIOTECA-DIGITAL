@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Autor as DomainAutorEntity } from '../../../domain/entities/autor.entity';
+import { Autor as DomainAutorEntity } from 'src/modules/autores/domain/entities/autor.entity';
 
-export class FindOneAutorOutputDto {
+export class UpdateAutorOutputDto {
   @ApiProperty({
-    example: 'Autor encontrado com sucesso!',
+    example: 'Autor atualizado com sucesso!',
     description: 'Mensagem de status da operação.',
   })
   message: string;
@@ -15,7 +15,7 @@ export class FindOneAutorOutputDto {
   autor: DomainAutorEntity;
 
   constructor(message: string, autor: DomainAutorEntity) {
-    this.autor = autor;
     this.message = message;
+    this.autor = autor;
   }
 }

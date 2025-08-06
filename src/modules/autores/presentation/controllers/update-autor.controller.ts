@@ -7,7 +7,6 @@ import {
   ParseIntPipe,
   Patch,
 } from '@nestjs/common';
-import { UpdateAutorUseCase } from '../../use-cases/update-autor.use-case';
 import { UpdateAutorDto } from '../dtos/inputs/update-autor.dto';
 import {
   ApiOkResponse,
@@ -16,6 +15,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UpdateAutorOutputDto } from '../dtos/outputs/update-autor.output';
+import { UpdateAutorUseCase } from '../../application/use-cases/update-autor.use-case';
 
 @ApiTags('Autores')
 @Controller('autores')

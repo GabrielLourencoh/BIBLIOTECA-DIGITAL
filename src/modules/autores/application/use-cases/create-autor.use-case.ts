@@ -3,11 +3,12 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { Autor as DomainAutorEntity } from '../domain/entities/autor.entity';
-import { CreateAutorDto } from '../presentation/dtos/inputs/create-autor.dto';
-import { AutorRepository } from '../domain/repositories/autor.repository';
+import { Autor as DomainAutorEntity } from '../../domain/entities/autor.entity';
+
+import { AutorRepository } from '../../domain/repositories/autor.repository';
 import { HashingService } from 'src/modules/auth/domain/services/hashing.service';
-import { CreateAutorOutputDto } from '../presentation/dtos/outputs/create-autor.output';
+import { CreateAutorOutputDto } from '../../presentation/dtos/outputs/create-autor.output';
+import { CreateAutorDto } from '../../presentation/dtos/inputs/create-autor.dto';
 
 @Injectable()
 export class CreateAutorUseCase {

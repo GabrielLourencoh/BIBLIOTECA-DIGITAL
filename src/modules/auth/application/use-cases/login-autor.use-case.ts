@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { HashingService } from '../../domain/services/hashing.service';
 import { JwtService } from '../../domain/services/jwt.service';
-import { AutorRepository } from 'src/modules/autores/application/domain/repositories/autor.repository';
+import { AutorRepository } from 'src/modules/autores/domain/repositories/autor.repository';
 import { LoginAutorInput } from '../dtos/inputs/login-autor.input';
 import { AuthTokenOutput } from '../dtos/outputs/auth-token.output';
 import { AuthPayloadEntity } from '../../domain/entities/auth-payload.entity';

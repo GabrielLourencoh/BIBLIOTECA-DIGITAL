@@ -12,8 +12,8 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { FindOneAutorUseCase } from '../../use-cases/find-one-autor.use-case';
 import { FindOneAutorOutputDto } from '../dtos/outputs/find-one-autor.output';
+import { FindOneAutorUseCase } from '../../application/use-cases/find-one-autor.use-case';
 
 @ApiTags('Autores')
 @Controller('autores')

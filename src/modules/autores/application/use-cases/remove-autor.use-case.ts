@@ -3,8 +3,8 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { AutorRepository } from '../domain/repositories/autor.repository';
-import { RemoveAutorOutputDto } from '../presentation/dtos/outputs/remove-autor.output';
+import { AutorRepository } from '../../domain/repositories/autor.repository';
+import { RemoveAutorOutputDto } from '../../presentation/dtos/outputs/remove-autor.output';
 
 @Injectable()
 export class RemoveAutorUseCase {

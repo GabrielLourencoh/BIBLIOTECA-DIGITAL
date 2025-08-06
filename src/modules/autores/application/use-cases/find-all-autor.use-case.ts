@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { AutorRepository } from '../domain/repositories/autor.repository';
-import { FindAllAutoresOutputDto } from '../presentation/dtos/outputs/find-all-autores.output';
+import { AutorRepository } from '../../domain/repositories/autor.repository';
+import { FindAllAutoresOutputDto } from '../../presentation/dtos/outputs/find-all-autores.output';
 
 @Injectable()
 export class FindAllAutorUseCase {
