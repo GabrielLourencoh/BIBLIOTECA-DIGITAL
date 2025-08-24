@@ -10,7 +10,7 @@ export class UpdateAutorOutputDto {
 
   @ApiProperty({
     type: [DomainAutorEntity],
-    description: 'Autor encontrado',
+    description: 'O Autor Atualizado.',
   })
   autor: DomainAutorEntity;
 

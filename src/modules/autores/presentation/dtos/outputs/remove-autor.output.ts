@@ -10,7 +10,7 @@ export class RemoveAutorOutputDto {
 
   @ApiProperty({
     type: [DomainAutorEntity],
-    description: 'Autor encontrado',
+    description: 'O Autor removido.',
   })
   autor: DomainAutorEntity;
 

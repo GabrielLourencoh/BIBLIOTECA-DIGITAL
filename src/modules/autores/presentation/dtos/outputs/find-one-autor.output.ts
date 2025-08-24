@@ -10,7 +10,7 @@ export class FindOneAutorOutputDto {
 
   @ApiProperty({
     type: [DomainAutorEntity],
-    description: 'Autor encontrado',
+    description: 'O Autor encontrado.',
   })
   autor: DomainAutorEntity;
 

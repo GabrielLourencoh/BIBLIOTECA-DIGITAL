@@ -7,7 +7,7 @@ export class FindAllAutoresOutputDto {
 
   @ApiProperty({
     type: [DomainAutorEntity],
-    description: 'Array de autores encontrados',
+    description: 'Lista de autores encontrados.',
   })
   autores: DomainAutorEntity[];
 
