@@ -1,11 +1,18 @@
 import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
 import { GetHealthUseCase } from '../../application/use-cases/get-health.use-case';
 import { FastifyReply } from 'fastify';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Health Check')
 @Controller('health')
 export class HealthController {
   constructor(private readonly getHealthUseCase: GetHealthUseCase) {}
 
+  @ApiOperation({ summary: 'Verificar a vida da aplicação' })
+  @ApiResponse({
+    status: 200,
+    description: 'Retorno da verificação da vida retornada com sucesso!',
+  })
   @Get()
   async getHealth(@Res() res: FastifyReply) {
     try {
