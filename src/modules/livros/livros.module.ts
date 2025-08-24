@@ -9,6 +9,8 @@ import { CreateLivroController } from './presentation/controllers/create-livro.c
 import { FindAllLivroController } from './presentation/controllers/find-all-livro.controller';
 import { FindOneLivroUseCase } from './application/use-cases/find-one-livro.use-case';
 import { FindOneLivroController } from './presentation/controllers/find-one-livro.controller';
+import { UpdateLivroController } from './presentation/controllers/update-livro.controller';
+import { UpdateLivroUseCase } from './application/use-cases/update-livro.use-case';
 
 @Module({
   imports: [PrismaModule],
@@ -16,12 +18,14 @@ import { FindOneLivroController } from './presentation/controllers/find-one-livr
     CreateLivroController,
     FindAllLivroController,
     FindOneLivroController,
+    UpdateLivroController,
   ],
   providers: [
     PrismaService,
     CreateLivroUseCase,
     FindAllLivroUseCase,
     FindOneLivroUseCase,
+    UpdateLivroUseCase,
     {
       provide: LivroRepository,
       useClass: PrismaLivroRepository,
