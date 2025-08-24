@@ -15,10 +15,10 @@ export class HealthController {
         return res.status(HttpStatus.SERVICE_UNAVAILABLE).send(healtStatus);
       }
 
-      console.log('Controller subiu');
+      console.log('[Health Check]: Controller subiu');
       return res.status(HttpStatus.OK).send(healtStatus);
     } catch (error) {
-      console.log('ERRO NO CONTROLLER', error);
+      console.log('[Health Check]: ERRO NO CONTROLLER', error);
 
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
         status: 'error',

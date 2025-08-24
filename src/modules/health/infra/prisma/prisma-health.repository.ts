@@ -9,11 +9,11 @@ export class PrismaHealthRepository implements HealthRepository {
   async checkDatabaseConnection(): Promise<boolean> {
     try {
       await this.prisma.$queryRaw`SELECT 1`;
-      console.log('Prisma repositorio OK');
+      console.log('[Health Check]: Prisma repositorio OK');
       return true;
     } catch (error) {
       console.log(
-        'Falha na conexão com o banco de dados (Health Check):',
+        '[Health Check]: Falha na conexão com o banco de dados (Health Check):',
         error,
       );
       return false;

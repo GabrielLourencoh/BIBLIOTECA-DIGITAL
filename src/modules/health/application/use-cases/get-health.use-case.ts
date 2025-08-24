@@ -14,10 +14,10 @@ export class GetHealthUseCase {
       if (dbCheck) {
         dbStatus = 'up';
       }
-      console.log(`USE CASE: Database Status ${dbStatus.toUpperCase()}`);
+      console.log(`[Health Check]: Database Status ${dbStatus.toUpperCase()}`);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log('USE CASE: Erro ao verificar status');
+      console.log('[Health Check]: Erro ao verificar status');
 
       dbStatus = 'down';
     }
