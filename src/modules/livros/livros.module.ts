@@ -11,6 +11,8 @@ import { FindOneLivroUseCase } from './application/use-cases/find-one-livro.use-
 import { FindOneLivroController } from './presentation/controllers/find-one-livro.controller';
 import { UpdateLivroController } from './presentation/controllers/update-livro.controller';
 import { UpdateLivroUseCase } from './application/use-cases/update-livro.use-case';
+import { RemoveLivroController } from './presentation/controllers/remove-livro.controller';
+import { RemoveLivroUseCase } from './application/use-cases/remove-livro.use-case';
 
 @Module({
   imports: [PrismaModule],
@@ -19,6 +21,7 @@ import { UpdateLivroUseCase } from './application/use-cases/update-livro.use-cas
     FindAllLivroController,
     FindOneLivroController,
     UpdateLivroController,
+    RemoveLivroController,
   ],
   providers: [
     PrismaService,
@@ -26,6 +29,7 @@ import { UpdateLivroUseCase } from './application/use-cases/update-livro.use-cas
     FindAllLivroUseCase,
     FindOneLivroUseCase,
     UpdateLivroUseCase,
+    RemoveLivroUseCase,
     {
       provide: LivroRepository,
       useClass: PrismaLivroRepository,

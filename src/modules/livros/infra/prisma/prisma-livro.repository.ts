@@ -57,4 +57,12 @@ export class PrismaLivroRepository implements LivroRepository {
 
     return LivroMapper.toDomain(prismaLivroUpdated)!;
   }
+
+  async remove(id: number): Promise<DomainLivroEntity> {
+    const prismaLivroRemoved = await this.prisma.livro.delete({
+      where: { id },
+    });
+
+    return LivroMapper.toDomain(prismaLivroRemoved)!;
+  }
 }
