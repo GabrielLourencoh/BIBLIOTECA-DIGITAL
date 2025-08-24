@@ -12,6 +12,14 @@ export class RemoveAutorUseCase {
 
   async execute(id: number): Promise<RemoveAutorOutputDto> {
     try {
+      const autorExist = await this.autorRepository.findOne(id);
+
+      if (!autorExist) {
+        throw new NotFoundException(
+          `Autor de ID ${id} não encontrado para a remoção`,
+        );
+      }
+
       const autorDeleted = await this.autorRepository.remove(id);
 
       return new RemoveAutorOutputDto(
