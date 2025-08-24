@@ -1,13 +1,35 @@
-import { Body, Controller, Param, ParseIntPipe, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Patch,
+} from '@nestjs/common';
 import { UpdateLivroUseCase } from '../../application/use-cases/update-livro.use-case';
 import { UpdateLivroDto } from '../dtos/inputs/update-livro.dto';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { UpdateLivroOutputDto } from '../dtos/outputs/update-livro.output';
 
 @ApiTags('Livros')
 @Controller('livros')
 export class UpdateLivroController {
   constructor(private readonly updateLivroUseCase: UpdateLivroUseCase) {}
 
+  @ApiOperation({ summary: 'Atualizar um livro por ID' })
+  @ApiResponse({ status: 404, description: 'Livro não encontrado' })
+  @ApiResponse({ status: 500, description: 'Erro interno do servidor' })
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({
+    description: 'Livro atualizado com sucesso!',
+    type: UpdateLivroOutputDto,
+  })
   @Patch(':id')
   async handle(
     @Param('id', ParseIntPipe) id: number,
