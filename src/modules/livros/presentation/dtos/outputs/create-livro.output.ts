@@ -10,7 +10,7 @@ export class CreateLivroOutputDto {
 
   @ApiProperty({
     type: DomainLivroEntity,
-    description: 'Autor criado com sucesso!',
+    description: 'O Autor criado.',
   })
   livro: DomainLivroEntity;
 

@@ -10,7 +10,7 @@ export class FindOneLivroOutputDto {
 
   @ApiProperty({
     type: [DomainLivroEntity],
-    description: 'Livro encontrado',
+    description: 'O Livro encontrado.',
   })
   livro: DomainLivroEntity;
 

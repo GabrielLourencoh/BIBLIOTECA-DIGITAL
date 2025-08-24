@@ -10,7 +10,7 @@ export class UpdateLivroOutputDto {
 
   @ApiProperty({
     type: [DomainLivroEntity],
-    description: 'Livro encontrado',
+    description: 'O Livro que foi atualizado.',
   })
   livro: DomainLivroEntity;
 

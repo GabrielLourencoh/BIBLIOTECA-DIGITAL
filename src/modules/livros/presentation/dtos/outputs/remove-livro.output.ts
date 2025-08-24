@@ -10,7 +10,7 @@ export class RemoveLivroOutputDto {
 
   @ApiProperty({
     type: [DomainLivroEntity],
-    description: 'O Livro que foi removido com sucesso!',
+    description: 'O Livro que foi removido.',
   })
   livro: DomainLivroEntity;
 

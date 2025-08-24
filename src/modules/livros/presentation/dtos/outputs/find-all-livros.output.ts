@@ -10,7 +10,7 @@ export class FindAllLivrosOutputdto {
 
   @ApiProperty({
     type: DomainLivroEntity,
-    description: 'Array de livros encontrados',
+    description: 'Lista de livros encontrados.',
   })
   livros: DomainLivroEntity[];
 
