@@ -34,4 +34,12 @@ export class PrismaLivroRepository implements LivroRepository {
 
     return prismaLivros.map((livro) => LivroMapper.toDomain(livro)!);
   }
+
+  async findOne(id: number): Promise<DomainLivroEntity | null> {
+    const prismaLivro = await this.prisma.livro.findUnique({
+      where: { id },
+    });
+
+    return LivroMapper.toDomain(prismaLivro);
+  }
 }

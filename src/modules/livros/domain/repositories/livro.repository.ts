@@ -7,4 +7,6 @@ export abstract class LivroRepository {
 
   // MÉTODO FINDALL
   abstract findAll(): Promise<Livro[]>;
+
+  abstract findOne(id: number): Promise<Livro | null>;
 }
