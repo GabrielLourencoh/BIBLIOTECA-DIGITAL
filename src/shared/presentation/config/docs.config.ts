@@ -3,7 +3,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { env } from '../../../config/env';
 
 export function setupSwagger(app: NestFastifyApplication): void {
-  // Configurações do documento Swagger
   const config = new DocumentBuilder()
     .setTitle('Biblioteca Digital')
     .setDescription('API de gerenciamento de autores e livros')
