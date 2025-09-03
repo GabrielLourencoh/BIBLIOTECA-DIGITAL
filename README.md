@@ -12,7 +12,7 @@ Repositório da API da Biblioteca Digital
 
 * <b>Fastify:</b> Adaptador HTTP para o NestJS, focado em alta performance e eficiência.
 
-* <b>Npm:</b> Gerenciador de pacotes rápido e eficiente para gerenciamento das dependências do projeto.
+* <b>Pnpm:</b> Gerenciador de pacotes rápido e eficiente para gerenciamento das dependências do projeto.
 
 * <b>Zod:</b> Biblioteca utilizada para validação de schemas de dados e variáveis de ambiente.
 
@@ -27,12 +27,13 @@ Repositório da API da Biblioteca Digital
 ## 💡 Útil
 
 <details>
-  <summary>Instalando o npm</summary>
+  <summary>Instalando o pnpm</summary>
 
-  O `npm` já vem instalado junto com o [Node.js](https://nodejs.org/). Para instalar o `npm`, basta instalar o Node.js:
+  Caso não tenha o gerenciador de pacotes [pnpm](https://pnpm.io/pt) instalado na sua máquina, recomendo que instale:
 
-  - Acesse: [https://nodejs.org/](https://nodejs.org/)
-  - Baixe e instale a versão recomendada para a sua máquina
+  ```bash
+  npm install -g pnpm
+  ```
 
 </details>
 
@@ -53,7 +54,7 @@ cd BIBLIOTECA-DIGITAL
 Após clonar o repositório, instale todas as dependências do projeto:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 3. Copie e cole o ".env.example" alterando o nome para ".env"
@@ -98,7 +99,7 @@ npx prisma migrate deploy
 Para iniciar a aplicação em modo de desenvolvimento:
 
 ```bash
-npm run start:dev
+pnpm run start:dev
 ```
 A API estará disponível em: http://localhost:3000
 <br>Documentação Swagger em: http://localhost:3000/api
@@ -110,7 +111,7 @@ A API estará disponível em: http://localhost:3000
 Compile o projeto para gerar os arquivos JavaScript otimizados para produção:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### 2. Configure as variáveis de ambiente
@@ -122,24 +123,24 @@ Certifique-se de que o arquivo .env esteja configurado com as variáveis de ambi
 Após o build, inicie a aplicação em modo de produção:
 
 ```bash
-npm run start:prod
+pnpm run start:prod
 ```
 
 ## 📋 Comandos disponíveis:
 
-* ```npm install```: Instala todas as dependências do projeto.
+* ```pnpm install```: Instala todas as dependências do projeto.
 
-* ```npm run start:dev```: Inicia a aplicação em modo de desenvolvimento.
+* ```pnpm run start:dev```: Inicia a aplicação em modo de desenvolvimento.
 
-* ```npm run start:prod```: Inicia a aplicação em modo de produção.
+* ```pnpm run start:prod```: Inicia a aplicação em modo de produção.
 
-* ```npm run build```: Compila o projeto para produção.
+* ```pnpm run build```: Compila o projeto para produção.
 
-* ```npm run lint```: Executa o linter para verificar problemas de estilo e erros no código.
+* ```pnpm run lint```: Executa o linter para verificar problemas de estilo e erros no código.
 
-* ```npm run format```: Formata o código usando Prettier/ESLint.
+* ```pnpm run format```: Formata o código usando Prettier/ESLint.
 
-* ```npm run test```: Executa os testes unitários e de integração.
+* ```pnpm run test```: Executa os testes unitários e de integração.
 
 * ```npx prisma generate```: Gera o Prisma Client com base no schema.prisma.
 
