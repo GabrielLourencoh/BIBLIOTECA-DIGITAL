@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Autor as PrismaAutorModel } from '@prisma/client';
 import { Autor as DomainAutorEntity } from '../../domain/entities/autor.entity';
 import { AutorRepository } from '../../domain/repositories/autor.repository';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/shared/infra/database/prisma/prisma.service';
 import { CreateAutorDto } from '../../presentation/dtos/inputs/create-autor.dto';
 import { AutorMapper } from '../../mappers/autor.mapper';
 import { UpdateAutorDto } from '../../presentation/dtos/inputs/update-autor.dto';

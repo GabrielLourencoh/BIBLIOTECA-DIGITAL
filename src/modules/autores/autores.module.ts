@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PrismaModule } from 'src/prisma/prisma.module';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/shared/infra/database/prisma/prisma.service';
 import { CreateAutorUseCase } from './application/use-cases/create-autor.use-case';
 import { AutorRepository } from './domain/repositories/autor.repository';
 import { PrismaAutorRepository } from './infra/prisma/prisma-autor.repository';
@@ -14,12 +13,10 @@ import { FindOneAutorController } from './presentation/controllers/find-one-auto
 import { UpdateAutorController } from './presentation/controllers/update-autor.controller';
 import { RemoveAutorController } from './presentation/controllers/remove-autor.controller';
 import { AutorMapper } from './mappers/autor.mapper';
+import { SharedModule } from '@/shared/shared.module';
 
 @Module({
-  imports: [
-    // TypeOrmModule.forFeature([Autor])
-    PrismaModule,
-  ], // Registra a entidade Autor para este módulo
+  imports: [SharedModule],
   controllers: [
     CreateAutorController,
     FindAllAutorController,

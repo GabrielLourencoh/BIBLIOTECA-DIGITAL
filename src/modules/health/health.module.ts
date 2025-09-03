@@ -3,10 +3,10 @@ import { HealthController } from './presentation/controllers/health.controller';
 import { GetHealthUseCase } from './application/use-cases/get-health.use-case';
 import { PrismaHealthRepository } from './infra/prisma/prisma-health.repository';
 import { HealthRepository } from './domain/repositories/health.repository';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { SharedModule } from '@/shared/shared.module';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [SharedModule],
   controllers: [HealthController],
   // `providers`: Não precisamos de provedores extras para esta lógica simples,
   // pois o HealthController injeta diretamente o PrismaService (que é global).

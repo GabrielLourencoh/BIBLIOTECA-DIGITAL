@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { LivroRepository } from '../../domain/repositories/livro.repository';
 import { Livro as DomainLivroEntity } from '../../domain/entities/livro.entity';
 import { Livro as PrismaLivroModel } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/shared/infra/database/prisma/prisma.service';
 import { LivroMapper } from '../../mappers/livro.mapper';
 import { UpdateLivroDto } from '../../presentation/dtos/inputs/update-livro.dto';
 
