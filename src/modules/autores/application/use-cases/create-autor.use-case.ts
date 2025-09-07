@@ -19,20 +19,12 @@ export class CreateAutorUseCase {
 
   async execute(data: CreateAutorDto): Promise<CreateAutorOutputDto> {
     try {
-      const hashedPassword = await this.hashingService.hash(data.password);
-
-      const newDomainAutor = new DomainAutorEntity(
-        data.nome,
-        hashedPassword,
-        data.cpf,
-        data.nacionalidade,
-        data.idade,
-        new Date(), // createdAt
-        new Date(), // updatedAt
-        undefined,
+      const newAutor = await DomainAutorEntity.create(
+        data,
+        this.hashingService,
       );
 
-      const autorCriado = await this.autorRepository.create(newDomainAutor);
+      const autorCriado = await this.autorRepository.create(newAutor);
 
       return new CreateAutorOutputDto('Autor criado com sucesso!', autorCriado);
     } catch (error: any) {

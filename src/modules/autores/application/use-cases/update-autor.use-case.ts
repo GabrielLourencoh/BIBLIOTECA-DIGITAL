@@ -4,7 +4,6 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { Autor as DomainAutorEntity } from '../../domain/entities/autor.entity';
 import { AutorRepository } from '../../domain/repositories/autor.repository';
 import { UpdateAutorDto } from '../../presentation/dtos/inputs/update-autor.dto';
 import { HashingService } from 'src/modules/auth/domain/services/hashing.service';
@@ -22,30 +21,13 @@ export class UpdateAutorUseCase {
     updateAutordto: UpdateAutorDto,
   ): Promise<UpdateAutorOutputDto> {
     try {
-      const autorAtual = await this.autorRepository.findOne(id);
+      const autor = await this.autorRepository.findOne(id);
 
-      if (!autorAtual) {
+      if (!autor) {
         throw new NotFoundException(`Autor com ID ${id} não encontrado`);
       }
 
-      let hashedPassword = autorAtual.password;
-
-      if (updateAutordto.password) {
-        hashedPassword = await this.hashingService.hash(
-          updateAutordto.password,
-        );
-      }
-
-      const autor = new DomainAutorEntity(
-        updateAutordto.nome ?? autorAtual.nome,
-        hashedPassword,
-        updateAutordto.cpf ?? autorAtual.cpf,
-        updateAutordto.nacionalidade ?? autorAtual.nacionalidade,
-        updateAutordto.idade ?? autorAtual.idade,
-        autorAtual.createdAt,
-        new Date(),
-        autorAtual.id,
-      );
+      await autor.update(updateAutordto, this.hashingService);
 
       const autorAtualizado = await this.autorRepository.update(id, autor);
 

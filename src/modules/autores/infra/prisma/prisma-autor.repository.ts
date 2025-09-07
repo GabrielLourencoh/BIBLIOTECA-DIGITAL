@@ -3,15 +3,13 @@ import { Autor as PrismaAutorModel } from '@prisma/client';
 import { Autor as DomainAutorEntity } from '../../domain/entities/autor.entity';
 import { AutorRepository } from '../../domain/repositories/autor.repository';
 import { PrismaService } from 'src/shared/infra/database/prisma/prisma.service';
-import { CreateAutorDto } from '../../presentation/dtos/inputs/create-autor.dto';
 import { AutorMapper } from '../../mappers/autor.mapper';
-import { UpdateAutorDto } from '../../presentation/dtos/inputs/update-autor.dto';
 
 @Injectable()
 export class PrismaAutorRepository implements AutorRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: CreateAutorDto): Promise<DomainAutorEntity> {
+  async create(data: DomainAutorEntity): Promise<DomainAutorEntity> {
     // Para 'create', não enviamos o 'id' se ele for auto-gerado pelo banco de dados.
     // Usamos os dados diretamente do DTO para criar no Prisma.
     const prismaData = {
@@ -52,7 +50,10 @@ export class PrismaAutorRepository implements AutorRepository {
     return AutorMapper.toDomain(prismaAutor);
   }
 
-  async update(id: number, data: UpdateAutorDto): Promise<DomainAutorEntity> {
+  async update(
+    id: number,
+    data: DomainAutorEntity,
+  ): Promise<DomainAutorEntity> {
     const prismaAutorUpdatedData = {
       ...data,
       updatedAt: new Date(),
