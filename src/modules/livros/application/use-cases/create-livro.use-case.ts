@@ -14,19 +14,9 @@ export class CreateLivroUseCase {
 
   async execute(createLivroDto: CreateLivroDto): Promise<CreateLivroOutputDto> {
     try {
-      const novoLivro = new DomainLivroEntity(
-        createLivroDto.titulo,
-        createLivroDto.isbn,
-        createLivroDto.genero,
-        createLivroDto.anoPublicacao,
-        createLivroDto.paginas,
-        createLivroDto.autorId,
-        new Date(),
-        new Date(),
-        undefined,
-      );
+      const newLivro = DomainLivroEntity.create(createLivroDto);
 
-      const livroCriado = await this.livroRepository.create(novoLivro);
+      const livroCriado = await this.livroRepository.create(newLivro);
 
       return new CreateLivroOutputDto('Livro criado com sucesso!', livroCriado);
     } catch (error: any) {

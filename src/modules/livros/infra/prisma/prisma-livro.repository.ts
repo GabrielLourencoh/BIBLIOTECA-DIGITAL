@@ -4,7 +4,6 @@ import { Livro as DomainLivroEntity } from '../../domain/entities/livro.entity';
 import { Livro as PrismaLivroModel } from '@prisma/client';
 import { PrismaService } from 'src/shared/infra/database/prisma/prisma.service';
 import { LivroMapper } from '../../mappers/livro.mapper';
-import { UpdateLivroDto } from '../../presentation/dtos/inputs/update-livro.dto';
 
 @Injectable()
 export class PrismaLivroRepository implements LivroRepository {
@@ -44,7 +43,10 @@ export class PrismaLivroRepository implements LivroRepository {
     return LivroMapper.toDomain(prismaLivro);
   }
 
-  async update(id: number, data: UpdateLivroDto): Promise<DomainLivroEntity> {
+  async update(
+    id: number,
+    data: DomainLivroEntity,
+  ): Promise<DomainLivroEntity> {
     const prismaLivroUpdatedData = {
       ...data,
       updatedAt: new Date(),

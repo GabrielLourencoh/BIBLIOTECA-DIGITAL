@@ -1,3 +1,6 @@
+import { CreateLivroDto } from '@/modules/livros/presentation/dtos/inputs/create-livro.dto';
+import { UpdateLivroDto } from '@/modules/livros/presentation/dtos/inputs/update-livro.dto';
+
 export class Livro {
   id?: number;
   titulo: string;
@@ -29,5 +32,29 @@ export class Livro {
     this.autorId = autorId;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+  }
+
+  static create(createLivroDto: CreateLivroDto): Livro {
+    return new Livro(
+      createLivroDto.titulo,
+      createLivroDto.isbn,
+      createLivroDto.genero,
+      createLivroDto.anoPublicacao,
+      createLivroDto.paginas,
+      createLivroDto.autorId,
+      new Date(),
+      new Date(),
+    );
+  }
+
+  update(updateLivroDto: UpdateLivroDto): void {
+    if (updateLivroDto.titulo) this.titulo = updateLivroDto.titulo;
+    if (updateLivroDto.isbn) this.isbn = updateLivroDto.isbn;
+    if (updateLivroDto.genero) this.genero = updateLivroDto.genero;
+    if (updateLivroDto.anoPublicacao)
+      this.anoPublicacao = updateLivroDto.anoPublicacao;
+    if (updateLivroDto.paginas) this.paginas = updateLivroDto.paginas;
+    if (updateLivroDto.autorId) this.autorId = updateLivroDto.autorId;
+    this.updatedAt = new Date();
   }
 }
